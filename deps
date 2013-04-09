@@ -62,3 +62,17 @@
     git=http://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
     version=origin/2.0
+
+[propel]
+    git=https://github.com/propelorm/Propel.git
+    target=/propel
+    version=origin/1.6
+
+[PropelBundle]
+    git=https://github.com/propelorm/PropelBundle.git
+    target=/bundles/Propel/PropelBundle
+    version=origin/1.0
+
+[phing]
+    git=https://github.com/phingofficial/phing.git
+    target=/phing

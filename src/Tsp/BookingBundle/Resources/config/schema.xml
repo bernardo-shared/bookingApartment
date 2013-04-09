@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="Tsp\BookingBundle\Model" defaultIdMethod="native">
+
+    <table name="flat">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="country" type="varchar" primaryString="true" size="100" />
+        <column name="postcode" type="varchar" primaryString="true" size="20" />
+        <column name="city" type="varchar" primaryString="true" size="100"/>
+        <column name="street" type="varchar" primaryString="true" size="200"/>
+        <column name="number" type="varchar" primaryString="true" size="10"/>
+        <column name="floor" type="varchar" primaryString="true" size="10"/>
+        <column name="description" type="longvarchar" />
+    </table>
+
+    <table name="customer">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="email" type="varchar" primaryString="true" size="100" />
+        <column name="password" type="varchar" primaryString="true" size="20" />
+    </table>
+
+    <table name="customer">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="email" type="varchar" primaryString="true" size="100" />
+        <column name="password" type="varchar" primaryString="true" size="20" />
+    </table>
+
+    <table name="room">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="type" type="varchar" primaryString="true" size="100" />
+    </table>
+
+</database>
+
