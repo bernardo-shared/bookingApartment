@@ -2,6 +2,10 @@
 <database name="default" namespace="Tsp\BookingBundle\Model" defaultIdMethod="native">
 
 <table name="flat">
+    <vendor type="mysql">
+        <parameter name="Engine" value="InnoDB"/>
+        <parameter name="Charset" value="utf8"/>
+    </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="description" type="varchar" size="100" />
     <column name="country" type="varchar" size="100" />
@@ -13,6 +17,10 @@
 </table>
 
 <table name="room">
+    <vendor type="mysql">
+        <parameter name="Engine" value="InnoDB"/>
+        <parameter name="Charset" value="utf8"/>
+    </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="description" type="varchar" primaryString="1" size="100" />
     <column name="flat_id" type="integer" />
@@ -22,6 +30,10 @@
 </table>
 
 <table name="bed">
+    <vendor type="mysql">
+        <parameter name="Engine" value="InnoDB"/>
+        <parameter name="Charset" value="utf8"/>
+    </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="type" type="varchar" primaryString="1" size="10" />
     <column name="room_id" type="integer" />
@@ -31,6 +43,10 @@
 </table>
 
 <table name="customer">
+    <vendor type="mysql">
+        <parameter name="Engine" value="InnoDB"/>
+        <parameter name="Charset" value="utf8"/>
+    </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="username" type="varchar" primaryString="1" size="10" />
     <column name="email" type="varchar" primaryString="1" size="100" />
@@ -38,6 +54,10 @@
 </table>
 
 <table name="booking">
+    <vendor type="mysql">
+        <parameter name="Engine" value="InnoDB"/>
+        <parameter name="Charset" value="utf8"/>
+    </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="start_date" type="date" />
     <column name="end_date" type="date" />
@@ -52,6 +72,10 @@
 </table>
 
 <table name="user">
+    <vendor type="mysql">
+        <parameter name="Engine" value="InnoDB"/>
+        <parameter name="Charset" value="utf8"/>
+    </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="username" type="varchar" primaryString="1" size="10" />
     <column name="email" type="varchar" primaryString="1" size="100" />

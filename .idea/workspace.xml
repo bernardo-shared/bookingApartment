@@ -2,19 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7e44613-dab0-49a0-982a-53437e9302fc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/propel/sql/default.sql" afterPath="$PROJECT_DIR$/app/propel/sql/default.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/parameters.ini" afterPath="$PROJECT_DIR$/app/config/parameters.ini" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tsp/BookingBundle/Resources/config/schema.xml" afterPath="$PROJECT_DIR$/src/Tsp/BookingBundle/Resources/config/schema.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bookingApartament.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365491889200" ignored="false" />
-    <file path="/parameters.ini" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365429418163" ignored="false" />
-    <file path="/config.yml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365429556445" ignored="false" />
+    <file path="/parameters.ini" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365501642822" ignored="false" />
+    <file path="/config.yml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365501609742" ignored="false" />
     <file path="/deps" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365437153426" ignored="false" />
     <file path="/schema.xml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365498110025" ignored="false" />
-    <file path="$PROJECT_DIR$/app/cache/dev/propel/buildtime-conf.xml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365499097188" ignored="false" />
-    <file path="$PROJECT_DIR$/app/cache/dev/propel/BookingBundle-schema.xml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365499097188" ignored="false" />
+    <file path="$PROJECT_DIR$/app/cache/dev/propel/buildtime-conf.xml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365502289206" ignored="false" />
+    <file path="$PROJECT_DIR$/app/cache/dev/appDevDebugProjectContainer.xml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365502289206" ignored="false" />
+    <file path="$PROJECT_DIR$/app/cache/dev/propel/BookingBundle-schema.xml" changelist="b7e44613-dab0-49a0-982a-53437e9302fc" time="1365502289206" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,7 @@
       <file leaf-file-name="config.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="45" selection-start="1221" selection-end="1226" vertical-scroll-proportion="0.0">
+            <state line="28" column="25" selection-start="869" selection-end="869" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -64,7 +66,16 @@
       <file leaf-file-name="schema.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Tsp/BookingBundle/Resources/config/schema.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="8" selection-start="633" selection-end="633" vertical-scroll-proportion="0.3146853">
+            <state line="19" column="25" selection-start="819" selection-end="819" vertical-scroll-proportion="0.49825174">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parameters.ini" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="28" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -111,9 +122,9 @@
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/app/autoload.php" />
         <option value="$PROJECT_DIR$/vendor/symfony/src/Symfony/Bundle/SecurityBundle/DependencyInjection/SecurityExtension.php" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
-        <option value="$PROJECT_DIR$/app/config/parameters.ini" />
         <option value="$PROJECT_DIR$/deps" />
+        <option value="$PROJECT_DIR$/app/config/parameters.ini" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/Tsp/BookingBundle/Resources/config/schema.xml" />
       </list>
     </option>
@@ -166,38 +177,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="bookingApartment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bookingApartment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bookingApartment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bookingApartment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bookingApartment" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bundles" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -392,13 +371,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="45" selection-start="1221" selection-end="1226" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/propel/migrations/PropelMigration_1365439372.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.71755725" />
@@ -432,13 +404,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="24" selection-start="190" selection-end="190" vertical-scroll-proportion="0.10489511">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tsp/BookingBundle/Model/BedPeer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -446,9 +411,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="28" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="25" selection-start="869" selection-end="869" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tsp/BookingBundle/Resources/config/schema.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="8" selection-start="633" selection-end="633" vertical-scroll-proportion="0.3146853">
+        <state line="19" column="25" selection-start="819" selection-end="819" vertical-scroll-proportion="0.49825174">
           <folding />
         </state>
       </provider>

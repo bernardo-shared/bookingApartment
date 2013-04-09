@@ -20,7 +20,7 @@ CREATE TABLE `flat`
     `number` VARCHAR(5),
     `floor` VARCHAR(5),
     PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
 -- room
@@ -34,8 +34,11 @@ CREATE TABLE `room`
     `description` VARCHAR(100),
     `flat_id` INTEGER,
     PRIMARY KEY (`id`),
-    INDEX `room_FI_1` (`flat_id`)
-) ENGINE=MyISAM;
+    INDEX `room_FI_1` (`flat_id`),
+    CONSTRAINT `room_FK_1`
+        FOREIGN KEY (`flat_id`)
+        REFERENCES `flat` (`id`)
+) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
 -- bed
@@ -49,8 +52,11 @@ CREATE TABLE `bed`
     `type` VARCHAR(10),
     `room_id` INTEGER,
     PRIMARY KEY (`id`),
-    INDEX `bed_FI_1` (`room_id`)
-) ENGINE=MyISAM;
+    INDEX `bed_FI_1` (`room_id`),
+    CONSTRAINT `bed_FK_1`
+        FOREIGN KEY (`room_id`)
+        REFERENCES `room` (`id`)
+) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
 -- customer
@@ -65,7 +71,7 @@ CREATE TABLE `customer`
     `email` VARCHAR(100),
     `password` VARCHAR(100),
     PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
 -- booking
@@ -82,8 +88,14 @@ CREATE TABLE `booking`
     `bed_id` INTEGER,
     PRIMARY KEY (`id`),
     INDEX `booking_FI_1` (`customer_id`),
-    INDEX `booking_FI_2` (`bed_id`)
-) ENGINE=MyISAM;
+    INDEX `booking_FI_2` (`bed_id`),
+    CONSTRAINT `booking_FK_1`
+        FOREIGN KEY (`customer_id`)
+        REFERENCES `customer` (`id`),
+    CONSTRAINT `booking_FK_2`
+        FOREIGN KEY (`bed_id`)
+        REFERENCES `bed` (`id`)
+) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
 -- user
@@ -98,7 +110,7 @@ CREATE TABLE `user`
     `email` VARCHAR(100),
     `password` VARCHAR(100),
     PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB CHARACTER SET='utf8';
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
