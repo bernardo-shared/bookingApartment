@@ -76,3 +76,7 @@
 [phing]
     git=https://github.com/phingofficial/phing.git
     target=/phing
+
+[bootstrap]
+    git=https://github.com/twitter/bootstrap.git
+    target=/bootstrap
