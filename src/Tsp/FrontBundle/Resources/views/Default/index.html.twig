@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Webpage</title>
+    <meta charset="UTF-8">
+    {% stylesheets
+        '%kernel.root_dir%/../vendor/*'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+</head>
+<body>
+    <h1>Working...</h1>
+</body>
+</html>
