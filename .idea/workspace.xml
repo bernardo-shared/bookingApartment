@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7e44613-dab0-49a0-982a-53437e9302fc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/apple-touch-icon.png" afterPath="$PROJECT_DIR$/web/apple-touch-icon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/favicon.ico" afterPath="$PROJECT_DIR$/web/favicon.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/.htaccess" afterPath="$PROJECT_DIR$/web/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app.php" afterPath="$PROJECT_DIR$/web/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app_dev.php" afterPath="$PROJECT_DIR$/web/app_dev.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/bookingApartament.iml" afterPath="$PROJECT_DIR$/.idea/bookingApartament.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deps" afterPath="$PROJECT_DIR$/deps" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/robots.txt" afterPath="$PROJECT_DIR$/web/robots.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bookingApartament.iws" />
@@ -59,19 +48,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html.twig" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Tsp/FrontBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="24" selection-start="230" selection-end="230" vertical-scroll-proportion="-5.625">
+            <state line="9" column="24" selection-start="230" selection-end="230" vertical-scroll-proportion="0.24545455">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deps" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="deps" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deps">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="21" selection-start="1983" selection-end="1983" vertical-scroll-proportion="0.94755244">
+            <state line="81" column="21" selection-start="1983" selection-end="1983" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -122,7 +111,7 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="width" value="1280" />
-    <option name="height" value="745" />
+    <option name="height" value="747" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -400,7 +389,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="745" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="747" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -408,7 +397,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980457" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25325733" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25570032" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25570032" sideWeight="0.9767055" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980457" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -552,16 +541,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tsp/FrontBundle/Resources/views/Default/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/deps">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="24" selection-start="230" selection-end="230" vertical-scroll-proportion="-5.625">
+        <state line="81" column="21" selection-start="1983" selection-end="1983" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deps">
+    <entry file="file://$PROJECT_DIR$/src/Tsp/FrontBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="21" selection-start="1983" selection-end="1983" vertical-scroll-proportion="0.94755244">
+        <state line="9" column="24" selection-start="230" selection-end="230" vertical-scroll-proportion="0.24545455">
           <folding />
         </state>
       </provider>
