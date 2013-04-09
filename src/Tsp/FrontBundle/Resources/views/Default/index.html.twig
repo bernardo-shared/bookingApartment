@@ -3,6 +3,7 @@
 <head>
     <title>My Webpage</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% stylesheets
         '%kernel.root_dir%/../vendor/bootstrap/lees*'
     %}
@@ -10,7 +11,34 @@
     {% endstylesheets %}
 </head>
 <body>
+    <div class="navbar navbar-static-top">
+        <a class="brand" href="#">trivagoBooking</a>
+        <ul class="nav">
+            <li class="active">
+                <a href="#">Home</a>
+            </li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
 
-    <h1>Working...</h1>
+            </div>
+            <div class="span10">
+                <ul class="thumbnails">
+                    <li class="span4">
+                        <div class="thumbnail">
+                            <img data-src="holder.js/300x200" alt="">
+                            <h3>Thumbnail label</h3>
+                            <p>Thumbnail caption...</p>
+                        </div>
+                    </li>
+                    ...
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
