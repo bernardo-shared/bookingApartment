@@ -1,3 +1,0 @@
-BookingBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BookingBundle:Default:index }
