@@ -1,0 +1,21 @@
+<?php
+
+namespace Tsp\AdminBundle\Model;
+
+use Tsp\AdminBundle\Model\om\BaseBedPeer;
+
+
+/**
+ * Skeleton subclass for performing query and update operations on the 'bed' table.
+ *
+ *
+ *
+ * You should add additional methods to this class to meet the
+ * application requirements.  This class will only be generated as
+ * long as it does not already exist in the output directory.
+ *
+ * @package    propel.generator.src.Tsp.AdminBundle.Model
+ */
+class BedPeer extends BaseBedPeer
+{
+}
