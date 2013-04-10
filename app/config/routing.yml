@@ -1,3 +1,7 @@
+SecurityBundle:
+    resource: "@SecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
 
 FrontBundle:
     resource: "@FrontBundle/Resources/config/routing.yml"
