@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 FrontBundle:
     resource: "@FrontBundle/Resources/config/routing.yml"
     prefix:   /
-
-BookingBundle:
-    resource: "@BookingBundle/Resources/config/routing.yml"
-=======
 AdminBundle:
     resource: "@AdminBundle/Resources/config/routing.yml"
->>>>>>> 8f327dfbd7103562c3058f999483533ca5a9e55a
     prefix:   /
 
 # Internal routing configuration to handle ESI
