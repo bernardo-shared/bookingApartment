@@ -1,0 +1,9 @@
+# Assetic Configuration
+
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    filters:
+        lessphp:
+            file:     %kernel.root_dir%/../vendor/lessphp/lessc.inc.php
+            apply_to: "\.less$"

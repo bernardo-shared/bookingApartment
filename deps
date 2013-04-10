@@ -80,3 +80,7 @@
 [bootstrap]
     git=https://github.com/twitter/bootstrap.git
     target=/bootstrap
+
+[lessphp]
+    git=https://github.com/leafo/lessphp.git
+    target=/lessphp
