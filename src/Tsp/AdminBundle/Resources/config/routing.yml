@@ -11,5 +11,5 @@ create_flat:
     defaults: { _controller: AdminBundle:Flat:create }
 
 show_flat:
-    pattern:  /show_flat
+    pattern:  /show_flat/{id}
     defaults: { _controller: AdminBundle:Flat:show }

@@ -1,1 +1,4 @@
-Hello {{ name }}!
+{% for flat in flats %}
+    <h3>{{ flat.description }}</h3>
+    <p>{{ flat.country }}</p>
+{% endfor %}

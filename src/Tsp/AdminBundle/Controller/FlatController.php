@@ -12,9 +12,13 @@ use Tsp\AdminBundle\Form\FlatType;
 class FlatController extends Controller
 {
 
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('AdminBundle:Flat:index.html.twig', array('name' => $name));
+        $flats = FlatQuery::create()
+            ->orderById()
+            ->find();
+
+        return $this->render('AdminBundle:Flat:index.html.twig', array('flats' => $flats));
     }
 
     public function newAction()
