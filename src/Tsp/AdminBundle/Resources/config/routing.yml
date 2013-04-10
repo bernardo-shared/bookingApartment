@@ -1,3 +1,15 @@
-AdminBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: AdminBundle:Default:index }
+list_flat:
+    pattern:  /list_flat
+    defaults: { _controller: AdminBundle:Flat:index }
+
+new_flat:
+    pattern:  /new_flat
+    defaults: { _controller: AdminBundle:Flat:new }
+
+create_flat:
+    pattern:  /create_flat
+    defaults: { _controller: AdminBundle:Flat:create }
+
+show_flat:
+    pattern:  /show_flat
+    defaults: { _controller: AdminBundle:Flat:show }
