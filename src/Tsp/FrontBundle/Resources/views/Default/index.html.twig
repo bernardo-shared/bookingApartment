@@ -5,40 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% stylesheets
-        '%kernel.root_dir%/../vendor/bootstrap/lees*'
+        '%kernel.root_dir%/../vendor/bootstrap/less/bootstrap.less'
+        '%kernel.root_dir%/../vendor/bootstrap/less/responsive.less'
+        '@FrontBundle/Resources/public/css/style.less'
     %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 </head>
 <body>
-    <div class="navbar navbar-static-top">
-        <a class="brand" href="#">trivagoBooking</a>
-        <ul class="nav">
-            <li class="active">
-                <a href="#">Home</a>
-            </li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-        </ul>
-    </div>
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container"><!-- Collapsable nav bar -->
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand">BookingApartment</a>
+                    <div class="nav-collapse">
+                        <ul class="nav pull-right">
+                            <li><a href="/users/sign_up">Sign Up</a></li>
+                            <li class="divider-vertical"></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+                                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                                    <!-- Login form here -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span2">
+            <div class="span3 well">
 
             </div>
-            <div class="span10">
+            <div class="span9">
                 <ul class="thumbnails">
-                    <li class="span4">
+                    <li class="span12">
                         <div class="thumbnail">
-                            <img data-src="holder.js/300x200" alt="">
+                            <img src="@FrontBundle/Resources/public/images/room.jpg" class="img-rounded">
                             <h3>Thumbnail label</h3>
                             <p>Thumbnail caption...</p>
                         </div>
                     </li>
-                    ...
+
                 </ul>
             </div>
         </div>
     </div>
+    {% javascripts
+        '@FrontBundle/Resources/public/js/*'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 </body>
 </html>
