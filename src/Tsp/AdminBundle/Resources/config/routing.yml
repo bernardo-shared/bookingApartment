@@ -13,3 +13,10 @@ create_flat:
 show_flat:
     pattern:  /show_flat/{id}
     defaults: { _controller: AdminBundle:Flat:show }
+
+login:
+    pattern: /login
+    defaults: { _controller: AdminBundle:Security:login}
+
+login_check:
+    pattern: /login_check

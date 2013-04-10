@@ -3,7 +3,14 @@
 <head>
     <title id='Description'>Booking Admin</title>
     {% block css %}
-        {#<link rel="stylesheet" href="{{ asset('/js/jqwidgets-ver2.8/jqwidgets/styles/jqx.base.css') }}" type="text/css" />#}
+
+        {% stylesheets
+        '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'
+        '%kernel.root_dir%/../vendor/twitter/bootstrap/less/responsive.less'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+
     {% endblock css %}
 </head>
 <body class='default'>
