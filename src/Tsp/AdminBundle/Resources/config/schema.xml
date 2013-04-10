@@ -51,6 +51,7 @@
     <column name="username" type="varchar" primaryString="1" size="10" />
     <column name="email" type="varchar" primaryString="1" size="100" />
     <column name="password" type="varchar" primaryString="1" size="100" />
+    <column name="salt" type="varchar" primaryString="1" size="32" />
 </table>
 
 <table name="booking">
@@ -80,6 +81,8 @@
     <column name="username" type="varchar" primaryString="1" size="10" />
     <column name="email" type="varchar" primaryString="1" size="100" />
     <column name="password" type="varchar" primaryString="1" size="100" />
+    <column name="salt" type="varchar" primaryString="1" size="32" />
+    <column name="is_active" type="boolean" />
 </table>
 
 </database>

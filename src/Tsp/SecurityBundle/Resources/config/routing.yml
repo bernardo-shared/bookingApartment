@@ -1,3 +1,0 @@
-SecurityBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: SecurityBundle:Default:index }

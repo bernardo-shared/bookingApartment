@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new Propel\PropelBundle\PropelBundle(),
             new Tsp\FrontBundle\FrontBundle(),
             new Tsp\AdminBundle\AdminBundle(),
-            new Tsp\SecurityBundle\SecurityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

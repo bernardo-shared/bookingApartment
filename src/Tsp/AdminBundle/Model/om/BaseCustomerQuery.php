@@ -26,11 +26,13 @@ use Tsp\AdminBundle\Model\CustomerQuery;
  * @method CustomerQuery orderByUsername($order = Criteria::ASC) Order by the username column
  * @method CustomerQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method CustomerQuery orderByPassword($order = Criteria::ASC) Order by the password column
+ * @method CustomerQuery orderBySalt($order = Criteria::ASC) Order by the salt column
  *
  * @method CustomerQuery groupById() Group by the id column
  * @method CustomerQuery groupByUsername() Group by the username column
  * @method CustomerQuery groupByEmail() Group by the email column
  * @method CustomerQuery groupByPassword() Group by the password column
+ * @method CustomerQuery groupBySalt() Group by the salt column
  *
  * @method CustomerQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CustomerQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -46,11 +48,13 @@ use Tsp\AdminBundle\Model\CustomerQuery;
  * @method Customer findOneByUsername(string $username) Return the first Customer filtered by the username column
  * @method Customer findOneByEmail(string $email) Return the first Customer filtered by the email column
  * @method Customer findOneByPassword(string $password) Return the first Customer filtered by the password column
+ * @method Customer findOneBySalt(string $salt) Return the first Customer filtered by the salt column
  *
  * @method array findById(int $id) Return Customer objects filtered by the id column
  * @method array findByUsername(string $username) Return Customer objects filtered by the username column
  * @method array findByEmail(string $email) Return Customer objects filtered by the email column
  * @method array findByPassword(string $password) Return Customer objects filtered by the password column
+ * @method array findBySalt(string $salt) Return Customer objects filtered by the salt column
  *
  * @package    propel.generator.src.Tsp.AdminBundle.Model.om
  */
@@ -154,7 +158,7 @@ abstract class BaseCustomerQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `username`, `email`, `password` FROM `customer` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `username`, `email`, `password`, `salt` FROM `customer` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -370,6 +374,35 @@ abstract class BaseCustomerQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CustomerPeer::PASSWORD, $password, $comparison);
+    }
+
+    /**
+     * Filter the query on the salt column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterBySalt('fooValue');   // WHERE salt = 'fooValue'
+     * $query->filterBySalt('%fooValue%'); // WHERE salt LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $salt The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return CustomerQuery The current query, for fluid interface
+     */
+    public function filterBySalt($salt = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($salt)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $salt)) {
+                $salt = str_replace('*', '%', $salt);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(CustomerPeer::SALT, $salt, $comparison);
     }
 
     /**

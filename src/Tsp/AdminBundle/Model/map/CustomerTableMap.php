@@ -49,6 +49,8 @@ class CustomerTableMap extends TableMap
         $this->getColumn('email', false)->setPrimaryString(true);
         $this->addColumn('password', 'Password', 'VARCHAR', false, 100, null);
         $this->getColumn('password', false)->setPrimaryString(true);
+        $this->addColumn('salt', 'Salt', 'VARCHAR', false, 32, null);
+        $this->getColumn('salt', false)->setPrimaryString(true);
         // validators
     } // initialize()
 
