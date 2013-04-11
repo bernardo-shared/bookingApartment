@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <title>{% block title %}{% endblock %} - BookApartment</title>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% stylesheets
+		    '%kernel.root_dir%/../vendor/bootstrap/less/bootstrap.less'
+		    '%kernel.root_dir%/../vendor/bootstrap/less/responsive.less'
+		    '@FrontBundle/Resources/public/css/style.less'
+		%}
+    	<link rel="stylesheet" href="{{ asset_url }}" />
+    	{% endstylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div id="navigation" class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand">BookingApartment</a>
+                        {% block navigation %}{% endblock %}
+                </div>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+        {% javascripts
+            '%kernel.root_dir%/../web/js/*'
+            '@FrontBundle/Resources/public/js/*'
+            '%kernel.root_dir%/../vendor/bootstrap/js/*'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+    </body>
+</html>
