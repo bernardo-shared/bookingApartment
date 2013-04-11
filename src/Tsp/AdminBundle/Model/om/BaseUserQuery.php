@@ -23,11 +23,15 @@ use Tsp\AdminBundle\Model\UserQuery;
  * @method UserQuery orderByUsername($order = Criteria::ASC) Order by the username column
  * @method UserQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method UserQuery orderByPassword($order = Criteria::ASC) Order by the password column
+ * @method UserQuery orderBySalt($order = Criteria::ASC) Order by the salt column
+ * @method UserQuery orderByIsActive($order = Criteria::ASC) Order by the is_active column
  *
  * @method UserQuery groupById() Group by the id column
  * @method UserQuery groupByUsername() Group by the username column
  * @method UserQuery groupByEmail() Group by the email column
  * @method UserQuery groupByPassword() Group by the password column
+ * @method UserQuery groupBySalt() Group by the salt column
+ * @method UserQuery groupByIsActive() Group by the is_active column
  *
  * @method UserQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method UserQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -39,11 +43,15 @@ use Tsp\AdminBundle\Model\UserQuery;
  * @method User findOneByUsername(string $username) Return the first User filtered by the username column
  * @method User findOneByEmail(string $email) Return the first User filtered by the email column
  * @method User findOneByPassword(string $password) Return the first User filtered by the password column
+ * @method User findOneBySalt(string $salt) Return the first User filtered by the salt column
+ * @method User findOneByIsActive(boolean $is_active) Return the first User filtered by the is_active column
  *
  * @method array findById(int $id) Return User objects filtered by the id column
  * @method array findByUsername(string $username) Return User objects filtered by the username column
  * @method array findByEmail(string $email) Return User objects filtered by the email column
  * @method array findByPassword(string $password) Return User objects filtered by the password column
+ * @method array findBySalt(string $salt) Return User objects filtered by the salt column
+ * @method array findByIsActive(boolean $is_active) Return User objects filtered by the is_active column
  *
  * @package    propel.generator.src.Tsp.AdminBundle.Model.om
  */
@@ -147,7 +155,7 @@ abstract class BaseUserQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `username`, `email`, `password` FROM `user` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `username`, `email`, `password`, `salt`, `is_active` FROM `user` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -363,6 +371,62 @@ abstract class BaseUserQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(UserPeer::PASSWORD, $password, $comparison);
+    }
+
+    /**
+     * Filter the query on the salt column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterBySalt('fooValue');   // WHERE salt = 'fooValue'
+     * $query->filterBySalt('%fooValue%'); // WHERE salt LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $salt The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return UserQuery The current query, for fluid interface
+     */
+    public function filterBySalt($salt = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($salt)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $salt)) {
+                $salt = str_replace('*', '%', $salt);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(UserPeer::SALT, $salt, $comparison);
+    }
+
+    /**
+     * Filter the query on the is_active column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByIsActive(true); // WHERE is_active = true
+     * $query->filterByIsActive('yes'); // WHERE is_active = true
+     * </code>
+     *
+     * @param     boolean|string $isActive The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return UserQuery The current query, for fluid interface
+     */
+    public function filterByIsActive($isActive = null, $comparison = null)
+    {
+        if (is_string($isActive)) {
+            $isActive = in_array(strtolower($isActive), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+        }
+
+        return $this->addUsingAlias(UserPeer::IS_ACTIVE, $isActive, $comparison);
     }
 
     /**

@@ -1,11 +1,10 @@
-
 FrontBundle:
     resource: "@FrontBundle/Resources/config/routing.yml"
     prefix:   /
 
 AdminBundle:
     resource: "@AdminBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /admin
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******

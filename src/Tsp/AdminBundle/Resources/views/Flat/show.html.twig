@@ -1,2 +1,55 @@
+{% extends "AdminBundle::layout.html.twig" %}
 
-<p>Description flat: {{ flat.description }}</p>
+{% block content %}
+
+    <!-- BEGIN BLOCK -->
+    <div class="hero-unit">
+
+
+        <!-- BEGIN TABLE -->
+        <table class="table">
+
+            <tbody>
+                <tr>
+                    <td>ID: </td>           <td>{{ flat.id }}</td>
+                </tr>
+                <tr>
+                    <td>Description: </td>  <td>{{ flat.description }}</td>
+                </tr>
+                <tr>
+                    <td>Country: </td>      <td>{{ flat.country }}</td>
+                </tr>
+                <tr>
+                    <td>City: </td>         <td>{{ flat.city }}</td>
+                </tr>
+                <tr>
+                    <td>Postcode: </td>     <td>{{ flat.postcode }}</td>
+                </tr>
+                <tr>
+                    <td>Street: </td>       <td>{{ flat.street}}</td>
+                </tr>
+                <tr>
+                    <td>Number: </td>       <td>{{ flat.number }}</td>
+                </tr>
+                <tr>
+                    <td>Floor: </td>        <td>{{ flat.floor }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- END TABLE -->
+
+    </div>
+    <!-- END BLOCK -->
+
+    <table>
+        <tr>
+            <td>
+                <a href="{{ path('list_flat') }}">
+                    Back to the list
+                </a>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}

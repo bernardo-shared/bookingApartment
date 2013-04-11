@@ -1,15 +1,38 @@
-list_flat:
-    pattern:  /list_flat
-    defaults: { _controller: AdminBundle:Flat:index }
+AdminBundle:
+    resource: "@AdminBundle/Resources/config/routing_flat.yml"
+    prefix:   /
 
-new_flat:
-    pattern:  /new_flat
-    defaults: { _controller: AdminBundle:Flat:new }
+list_customer:
+    pattern:  /list_customer
+    defaults: { _controller: AdminBundle:Customer:index }
 
-create_flat:
-    pattern:  /create_flat
-    defaults: { _controller: AdminBundle:Flat:create }
+new_customer:
+    pattern:  /new_customer
+    defaults: { _controller: AdminBundle:Customer:new }
 
-show_flat:
-    pattern:  /show_flat/{id}
-    defaults: { _controller: AdminBundle:Flat:show }
+create_customer:
+    pattern:  /create_customer
+    defaults: { _controller: AdminBundle:Customer:create }
+
+edit_customer:
+    pattern:  /edit_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:edit }
+
+update_customer:
+    pattern:  /update_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:update }
+
+delete_customer:
+    pattern:  /delete_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:delete }
+
+show_customer:
+    pattern:  /show_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:show }
+
+login:
+    pattern: /login
+    defaults: { _controller: AdminBundle:Security:login}
+
+login_check:
+    pattern: /login_check

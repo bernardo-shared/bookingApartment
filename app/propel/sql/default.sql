@@ -70,6 +70,7 @@ CREATE TABLE `customer`
     `username` VARCHAR(10),
     `email` VARCHAR(100),
     `password` VARCHAR(100),
+    `salt` VARCHAR(32),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
@@ -109,6 +110,8 @@ CREATE TABLE `user`
     `username` VARCHAR(10),
     `email` VARCHAR(100),
     `password` VARCHAR(100),
+    `salt` VARCHAR(32),
+    `is_active` TINYINT(1),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 

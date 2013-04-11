@@ -72,6 +72,12 @@ abstract class BaseCustomer extends BaseObject implements Persistent
     protected $password;
 
     /**
+     * The value for the salt field.
+     * @var        string
+     */
+    protected $salt;
+
+    /**
      * @var        PropelObjectCollection|Booking[] Collection to store aggregation of Booking objects.
      */
     protected $collBookings;
@@ -141,6 +147,16 @@ abstract class BaseCustomer extends BaseObject implements Persistent
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Get the [salt] column value.
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
     }
 
     /**
@@ -228,6 +244,27 @@ abstract class BaseCustomer extends BaseObject implements Persistent
     } // setPassword()
 
     /**
+     * Set the value of [salt] column.
+     *
+     * @param string $v new value
+     * @return Customer The current object (for fluent API support)
+     */
+    public function setSalt($v)
+    {
+        if ($v !== null && is_numeric($v)) {
+            $v = (string) $v;
+        }
+
+        if ($this->salt !== $v) {
+            $this->salt = $v;
+            $this->modifiedColumns[] = CustomerPeer::SALT;
+        }
+
+
+        return $this;
+    } // setSalt()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -263,6 +300,7 @@ abstract class BaseCustomer extends BaseObject implements Persistent
             $this->username = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->email = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
             $this->password = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->salt = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -271,7 +309,7 @@ abstract class BaseCustomer extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 4; // 4 = CustomerPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 5; // 5 = CustomerPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Customer object", $e);
@@ -515,6 +553,9 @@ abstract class BaseCustomer extends BaseObject implements Persistent
         if ($this->isColumnModified(CustomerPeer::PASSWORD)) {
             $modifiedColumns[':p' . $index++]  = '`password`';
         }
+        if ($this->isColumnModified(CustomerPeer::SALT)) {
+            $modifiedColumns[':p' . $index++]  = '`salt`';
+        }
 
         $sql = sprintf(
             'INSERT INTO `customer` (%s) VALUES (%s)',
@@ -537,6 +578,9 @@ abstract class BaseCustomer extends BaseObject implements Persistent
                         break;
                     case '`password`':
                         $stmt->bindValue($identifier, $this->password, PDO::PARAM_STR);
+                        break;
+                    case '`salt`':
+                        $stmt->bindValue($identifier, $this->salt, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -692,6 +736,9 @@ abstract class BaseCustomer extends BaseObject implements Persistent
             case 3:
                 return $this->getPassword();
                 break;
+            case 4:
+                return $this->getSalt();
+                break;
             default:
                 return null;
                 break;
@@ -725,6 +772,7 @@ abstract class BaseCustomer extends BaseObject implements Persistent
             $keys[1] => $this->getUsername(),
             $keys[2] => $this->getEmail(),
             $keys[3] => $this->getPassword(),
+            $keys[4] => $this->getSalt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->collBookings) {
@@ -776,6 +824,9 @@ abstract class BaseCustomer extends BaseObject implements Persistent
             case 3:
                 $this->setPassword($value);
                 break;
+            case 4:
+                $this->setSalt($value);
+                break;
         } // switch()
     }
 
@@ -804,6 +855,7 @@ abstract class BaseCustomer extends BaseObject implements Persistent
         if (array_key_exists($keys[1], $arr)) $this->setUsername($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setEmail($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setPassword($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setSalt($arr[$keys[4]]);
     }
 
     /**
@@ -819,6 +871,7 @@ abstract class BaseCustomer extends BaseObject implements Persistent
         if ($this->isColumnModified(CustomerPeer::USERNAME)) $criteria->add(CustomerPeer::USERNAME, $this->username);
         if ($this->isColumnModified(CustomerPeer::EMAIL)) $criteria->add(CustomerPeer::EMAIL, $this->email);
         if ($this->isColumnModified(CustomerPeer::PASSWORD)) $criteria->add(CustomerPeer::PASSWORD, $this->password);
+        if ($this->isColumnModified(CustomerPeer::SALT)) $criteria->add(CustomerPeer::SALT, $this->salt);
 
         return $criteria;
     }
@@ -885,6 +938,7 @@ abstract class BaseCustomer extends BaseObject implements Persistent
         $copyObj->setUsername($this->getUsername());
         $copyObj->setEmail($this->getEmail());
         $copyObj->setPassword($this->getPassword());
+        $copyObj->setSalt($this->getSalt());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1217,6 +1271,7 @@ abstract class BaseCustomer extends BaseObject implements Persistent
         $this->username = null;
         $this->email = null;
         $this->password = null;
+        $this->salt = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->alreadyInClearAllReferencesDeep = false;

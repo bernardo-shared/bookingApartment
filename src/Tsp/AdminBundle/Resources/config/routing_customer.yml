@@ -1,0 +1,34 @@
+list_customer:
+    pattern:  /list_customer
+    defaults: { _controller: AdminBundle:Customer:index }
+
+new_customer:
+    pattern:  /new_customer
+    defaults: { _controller: AdminBundle:Customer:new }
+
+create_customer:
+    pattern:  /create_customer
+    defaults: { _controller: AdminBundle:Customer:create }
+
+edit_customer:
+    pattern:  /edit_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:edit }
+
+update_customer:
+    pattern:  /update_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:update }
+
+delete_customer:
+    pattern:  /delete_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:delete }
+
+show_customer:
+    pattern:  /show_customer/{id}
+    defaults: { _controller: AdminBundle:Customer:show }
+
+login:
+    pattern: /login
+    defaults: { _controller: AdminBundle:Security:login}
+
+login_check:
+    pattern: /login_check

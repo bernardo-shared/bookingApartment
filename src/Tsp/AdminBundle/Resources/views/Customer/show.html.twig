@@ -1,0 +1,40 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <!-- BEGIN BLOCK -->
+    <div class="hero-unit">
+
+
+        <!-- BEGIN TABLE -->
+        <table class="table">
+
+            <tbody>
+                <tr>
+                    <td>ID: </td>           <td>{{ customer.id }}</td>
+                </tr>
+                <tr>
+                    <td>Username: </td>  <td>{{ customer.username }}</td>
+                </tr>
+                <tr>
+                    <td>Email: </td>      <td>{{ customer.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- END TABLE -->
+
+    </div>
+    <!-- END BLOCK -->
+
+    <table>
+        <tr>
+            <td>
+                <a href="{{ path('list_customer') }}">
+                    Back to the list
+                </a>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}

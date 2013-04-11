@@ -1,0 +1,40 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <h1>List customers</h1>
+
+    <!-- BEGIN MESSAGE -->
+    {% if app.session.hasFlash('notice') %}
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert" onclick="jQuery('.alert').fadeOut('slow')">&times;</button>
+        <strong>Notice</strong> {{ app.session.flash('notice') }}
+    </div>
+    {% endif %}
+    <!-- END MESSAGE -->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Customer-ID</th>
+            <th>username</th>
+            <th>email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.username }}</td>
+            <td>{{ customer.email }}</td>
+            <td>
+                <a href="{{ path('delete_customer', {id: customer.id}) }}" class="btn btn-danger" type="button" >Delete</a>
+                <a href="{{ path('show_customer', {id: customer.id}) }}" class="btn btn-info" type="button">Info</a>
+                <a href="{{ path('edit_customer', { id: customer.id }) }}" class="btn" type="button">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

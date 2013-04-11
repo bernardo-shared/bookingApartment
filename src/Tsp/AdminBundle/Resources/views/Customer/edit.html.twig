@@ -1,0 +1,35 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div class="hero-unit">
+
+    <h2>Customer edition</h2>
+
+    <form action="{{ path('update_cusomer', { 'id': customer.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        {{ form_widget(edit_form) }}
+        <p>
+            <button type="submit" class="btn btn-primary" >Update</button>
+        </p>
+    </form>
+
+    <table>
+        <tr>
+            <td>
+                <a href="{{ path('list_customer') }}">
+                    Back to the list
+                </a>
+            </td>
+            <td>
+                <form action="{{ path('delete_customer', { 'id': customer.id }) }}" method="post">
+                    {{ form_widget(delete_form) }}
+                    <button type="submit" class="btn btn-danger" href="#">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+{% endblock %}
+

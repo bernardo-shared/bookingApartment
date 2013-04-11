@@ -36,13 +36,13 @@ abstract class BaseCustomerPeer
     const TM_CLASS = 'CustomerTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 4;
+    const NUM_COLUMNS = 5;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 4;
+    const NUM_HYDRATE_COLUMNS = 5;
 
     /** the column name for the id field */
     const ID = 'customer.id';
@@ -55,6 +55,9 @@ abstract class BaseCustomerPeer
 
     /** the column name for the password field */
     const PASSWORD = 'customer.password';
+
+    /** the column name for the salt field */
+    const SALT = 'customer.salt';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -75,12 +78,12 @@ abstract class BaseCustomerPeer
      * e.g. CustomerPeer::$fieldNames[CustomerPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Username', 'Email', 'Password', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'username', 'email', 'password', ),
-        BasePeer::TYPE_COLNAME => array (CustomerPeer::ID, CustomerPeer::USERNAME, CustomerPeer::EMAIL, CustomerPeer::PASSWORD, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'USERNAME', 'EMAIL', 'PASSWORD', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'username', 'email', 'password', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Username', 'Email', 'Password', 'Salt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'username', 'email', 'password', 'salt', ),
+        BasePeer::TYPE_COLNAME => array (CustomerPeer::ID, CustomerPeer::USERNAME, CustomerPeer::EMAIL, CustomerPeer::PASSWORD, CustomerPeer::SALT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'USERNAME', 'EMAIL', 'PASSWORD', 'SALT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'username', 'email', 'password', 'salt', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
     /**
@@ -90,12 +93,12 @@ abstract class BaseCustomerPeer
      * e.g. CustomerPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Username' => 1, 'Email' => 2, 'Password' => 3, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'username' => 1, 'email' => 2, 'password' => 3, ),
-        BasePeer::TYPE_COLNAME => array (CustomerPeer::ID => 0, CustomerPeer::USERNAME => 1, CustomerPeer::EMAIL => 2, CustomerPeer::PASSWORD => 3, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'USERNAME' => 1, 'EMAIL' => 2, 'PASSWORD' => 3, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'username' => 1, 'email' => 2, 'password' => 3, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Username' => 1, 'Email' => 2, 'Password' => 3, 'Salt' => 4, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'username' => 1, 'email' => 2, 'password' => 3, 'salt' => 4, ),
+        BasePeer::TYPE_COLNAME => array (CustomerPeer::ID => 0, CustomerPeer::USERNAME => 1, CustomerPeer::EMAIL => 2, CustomerPeer::PASSWORD => 3, CustomerPeer::SALT => 4, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'USERNAME' => 1, 'EMAIL' => 2, 'PASSWORD' => 3, 'SALT' => 4, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'username' => 1, 'email' => 2, 'password' => 3, 'salt' => 4, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
     );
 
     /**
@@ -173,11 +176,13 @@ abstract class BaseCustomerPeer
             $criteria->addSelectColumn(CustomerPeer::USERNAME);
             $criteria->addSelectColumn(CustomerPeer::EMAIL);
             $criteria->addSelectColumn(CustomerPeer::PASSWORD);
+            $criteria->addSelectColumn(CustomerPeer::SALT);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.username');
             $criteria->addSelectColumn($alias . '.email');
             $criteria->addSelectColumn($alias . '.password');
+            $criteria->addSelectColumn($alias . '.salt');
         }
     }
 
