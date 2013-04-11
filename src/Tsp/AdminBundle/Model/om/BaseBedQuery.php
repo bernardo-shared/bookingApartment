@@ -46,11 +46,11 @@ use Tsp\AdminBundle\Model\Room;
  * @method Bed findOne(PropelPDO $con = null) Return the first Bed matching the query
  * @method Bed findOneOrCreate(PropelPDO $con = null) Return the first Bed matching the query, or a new Bed object populated from the query conditions when no match is found
  *
- * @method Bed findOneByType(string $type) Return the first Bed filtered by the type column
+ * @method Bed findOneByType(int $type) Return the first Bed filtered by the type column
  * @method Bed findOneByRoomId(int $room_id) Return the first Bed filtered by the room_id column
  *
  * @method array findById(int $id) Return Bed objects filtered by the id column
- * @method array findByType(string $type) Return Bed objects filtered by the type column
+ * @method array findByType(int $type) Return Bed objects filtered by the type column
  * @method array findByRoomId(int $room_id) Return Bed objects filtered by the room_id column
  *
  * @package    propel.generator.src.Tsp.AdminBundle.Model.om
@@ -289,26 +289,24 @@ abstract class BaseBedQuery extends ModelCriteria
     /**
      * Filter the query on the type column
      *
-     * Example usage:
-     * <code>
-     * $query->filterByType('fooValue');   // WHERE type = 'fooValue'
-     * $query->filterByType('%fooValue%'); // WHERE type LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $type The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     mixed $type The value to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return BedQuery The current query, for fluid interface
+     * @throws PropelException - if the value is not accepted by the enum.
      */
     public function filterByType($type = null, $comparison = null)
     {
-        if (null === $comparison) {
-            if (is_array($type)) {
+        if (is_scalar($type)) {
+            $type = BedPeer::getSqlValueForEnum(BedPeer::TYPE, $type);
+        } elseif (is_array($type)) {
+            $convertedValues = array();
+            foreach ($type as $value) {
+                $convertedValues[] = BedPeer::getSqlValueForEnum(BedPeer::TYPE, $value);
+            }
+            $type = $convertedValues;
+            if (null === $comparison) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $type)) {
-                $type = str_replace('*', '%', $type);
-                $comparison = Criteria::LIKE;
             }
         }
 

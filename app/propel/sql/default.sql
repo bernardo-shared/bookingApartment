@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `bed`;
 CREATE TABLE `bed`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `type` VARCHAR(10),
+    `type` TINYINT NOT NULL,
     `room_id` INTEGER,
     PRIMARY KEY (`id`),
     INDEX `bed_FI_1` (`room_id`),
@@ -68,8 +68,8 @@ CREATE TABLE `customer`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(10),
-    `email` VARCHAR(100),
-    `password` VARCHAR(100),
+    `email` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
     `salt` VARCHAR(32),
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
@@ -83,8 +83,8 @@ DROP TABLE IF EXISTS `booking`;
 CREATE TABLE `booking`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `start_date` DATE,
-    `end_date` DATE,
+    `start_date` DATE NOT NULL,
+    `end_date` DATE NOT NULL,
     `customer_id` INTEGER,
     `bed_id` INTEGER,
     PRIMARY KEY (`id`),
@@ -108,8 +108,8 @@ CREATE TABLE `user`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(10),
-    `email` VARCHAR(100),
-    `password` VARCHAR(100),
+    `email` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
     `salt` VARCHAR(32),
     `is_active` TINYINT(1),
     PRIMARY KEY (`id`)

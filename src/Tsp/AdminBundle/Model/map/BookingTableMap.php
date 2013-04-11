@@ -43,8 +43,8 @@ class BookingTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('start_date', 'StartDate', 'DATE', false, null, null);
-        $this->addColumn('end_date', 'EndDate', 'DATE', false, null, null);
+        $this->addColumn('start_date', 'StartDate', 'DATE', true, null, null);
+        $this->addColumn('end_date', 'EndDate', 'DATE', true, null, null);
         $this->addForeignKey('customer_id', 'CustomerId', 'INTEGER', 'customer', 'id', false, null, null);
         $this->addForeignKey('bed_id', 'BedId', 'INTEGER', 'bed', 'id', false, null, null);
         // validators

@@ -54,6 +54,11 @@ abstract class BaseBedPeer
     /** the column name for the room_id field */
     const ROOM_ID = 'bed.room_id';
 
+    /** The enumerated values for the type field */
+    const TYPE_SOFA = 'Sofa';
+    const TYPE_SINGLE = 'Single';
+    const TYPE_TWW = 'TWW';
+
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -96,6 +101,15 @@ abstract class BaseBedPeer
         BasePeer::TYPE_NUM => array (0, 1, 2, )
     );
 
+    /** The enumerated values for this table */
+    protected static $enumValueSets = array(
+        BedPeer::TYPE => array(
+            BedPeer::TYPE_SOFA,
+            BedPeer::TYPE_SINGLE,
+            BedPeer::TYPE_TWW,
+        ),
+    );
+
     /**
      * Translates a fieldname to another type
      *
@@ -133,6 +147,50 @@ abstract class BaseBedPeer
         }
 
         return BedPeer::$fieldNames[$type];
+    }
+
+    /**
+     * Gets the list of values for all ENUM columns
+     * @return array
+     */
+    public static function getValueSets()
+    {
+      return BedPeer::$enumValueSets;
+    }
+
+    /**
+     * Gets the list of values for an ENUM column
+     *
+     * @param string $colname The ENUM column name.
+     *
+     * @return array list of possible values for the column
+     */
+    public static function getValueSet($colname)
+    {
+        $valueSets = BedPeer::getValueSets();
+
+        if (!isset($valueSets[$colname])) {
+            throw new PropelException(sprintf('Column "%s" has no ValueSet.', $colname));
+        }
+
+        return $valueSets[$colname];
+    }
+
+    /**
+     * Gets the SQL value for the ENUM column value
+     *
+     * @param string $colname ENUM column name.
+     * @param string $enumVal ENUM value.
+     *
+     * @return int            SQL value
+     */
+    public static function getSqlValueForEnum($colname, $enumVal)
+    {
+        $values = BedPeer::getValueSet($colname);
+        if (!in_array($enumVal, $values)) {
+            throw new PropelException(sprintf('Value "%s" is not accepted in this enumerated column', $colname));
+        }
+        return array_search($enumVal, $values);
     }
 
     /**
@@ -474,6 +532,17 @@ abstract class BaseBedPeer
         }
 
         return array($obj, $col);
+    }
+
+    /**
+     * Gets the SQL value for Type ENUM value
+     *
+     * @param  string $enumVal ENUM value to get SQL value for
+     * @return int             SQL value
+     */
+    public static function getTypeSqlValue($enumVal)
+    {
+        return BedPeer::getSqlValueForEnum(BedPeer::TYPE, $enumVal);
     }
 
 

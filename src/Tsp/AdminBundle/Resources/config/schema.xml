@@ -35,7 +35,7 @@
         <parameter name="Charset" value="utf8"/>
     </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-    <column name="type" type="varchar" primaryString="1" size="10" />
+    <column name="type" type="enum" required="true" valueSet="Sofa, Single, TWW"/>
     <column name="room_id" type="integer" />
     <foreign-key foreignTable="room">
         <reference local="room_id" foreign="id" />
@@ -49,8 +49,8 @@
     </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="username" type="varchar" primaryString="1" size="10" />
-    <column name="email" type="varchar" primaryString="1" size="100" />
-    <column name="password" type="varchar" primaryString="1" size="100" />
+    <column name="email" type="varchar" required="true" primaryString="1" size="100" />
+    <column name="password" type="varchar" required="true" primaryString="1" size="100" />
     <column name="salt" type="varchar" primaryString="1" size="32" />
 </table>
 
@@ -60,8 +60,8 @@
         <parameter name="Charset" value="utf8"/>
     </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-    <column name="start_date" type="date" />
-    <column name="end_date" type="date" />
+    <column name="start_date" type="date" required="true" />
+    <column name="end_date" type="date" required="true" />
     <column name="customer_id" type="integer" />
     <column name="bed_id" type="integer" />
     <foreign-key foreignTable="customer">
@@ -79,8 +79,8 @@
     </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="username" type="varchar" primaryString="1" size="10" />
-    <column name="email" type="varchar" primaryString="1" size="100" />
-    <column name="password" type="varchar" primaryString="1" size="100" />
+    <column name="email" type="varchar" required="true" primaryString="1" size="100" />
+    <column name="password" type="varchar" required="true" primaryString="1" size="100" />
     <column name="salt" type="varchar" primaryString="1" size="32" />
     <column name="is_active" type="boolean" />
 </table>
