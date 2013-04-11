@@ -1,0 +1,135 @@
+Tsp\AdminBundle\Model\User:
+  User_1:
+    username: user1
+    email: user1@gmail.com
+    password: 'abcd'
+  User_2:
+    username: user2
+    email: user2@gmail.com
+    password: 'abcd'
+  User_3:
+    username: user3
+    email: user3@gmail.com
+    password: 'abcd'
+  User_4:
+    username: user4
+    email: user4@gmail.com
+    password: 'abcd'
+  User_5:
+    username: user5
+    email: user5@gmail.com
+    password: 'abcd'
+  User_6:
+    username: user6
+    email: user6@gmail.com
+    password: 'abcd'
+Tsp\AdminBundle\Model\Customer:
+  Customer_1:
+    username: customer1
+    email: customer@gmail.com
+    password: 'abcd'
+    password: '000111222'
+  Customer_2:
+    username: customer2
+    email: customer2@gmail.com
+    password: 'abcd'
+    password: '000111222'
+  Customer_3:
+    username: customer3
+    email: customer3@gmail.com
+    password: 'abcd'
+    password: '000111222'
+  Customer_4:
+    username: customer4
+    email: customer4@gmail.com
+    password: 'abcd'
+    password: '000111222'
+  Customer_5:
+    username: customer5
+    email: customer5@gmail.com
+    password: 'abcd'
+    password: '000111222'
+  Customer_6:
+    username: customer6
+    email: customer6@gmail.com
+    password: 'abcd'
+    password: '000111222'
+Tsp\AdminBundle\Model\Flat:
+  Flat_1:
+    description: Description1
+    country: Country1
+    city: City1
+    postcode: '33400'
+    street: 'Street1'
+    number: '1'
+    floor: '2'
+  Flat_2:
+    description: Description2
+    country: Country2
+    city: City1
+    postcode: '33400'
+    street: 'Street2'
+    number: '1'
+    floor: '2'
+  Flat_1:
+    description: Description1
+    country: Country1
+    city: City1
+    postcode: '33400'
+    street: 'Street1'
+    number: '1'
+    floor: '2'
+  Flat_3:
+    description: Description3
+    country: Country3
+    city: City3
+    postcode: '33400'
+    street: 'Street3'
+    number: '1'
+    floor: '2'
+  Flat_4:
+    description: Description4
+    country: Country4
+    city: City4
+    postcode: '33400'
+    street: 'Street4'
+    number: '1'
+    floor: '2'
+
+Tsp\AdminBundle\Model\Room:
+  Room_1:
+    description: Description1
+    FlatId: Flat_1
+  Room_2:
+    description: Description2
+    FlatId: Flat_2
+  Room_3:
+    description: Description3
+    FlatId: Flat_3
+  Room_4:
+    description: Description4
+    FlatId: Flat_4
+
+Tsp\AdminBundle\Model\Bed:
+  Bed_1:
+    RoomId: Room_1
+  Bed_2:
+    RoomId: Room_2
+  Bed_3:
+    RoomId: Room_3
+  Bed_4:
+    RoomId: Room_4
+
+#Tsp\AdminBundle\Model\Booking:
+#  Booking_1:
+#    BedId: Bed_1
+#    CustomerId: Customer_1
+#    start_date: '2013-04-01'
+#    end_date: '2013-04-91'
+#
+#  Booking_2:
+#    BedId: Bed_2
+#  Booking_3:
+#    BedId: Bed_3
+#  Booking_4:
+#    BedId: Bed_4
