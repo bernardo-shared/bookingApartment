@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>List Customer</h1>
+    <h1>List admins</h1>
 
     <!-- BEGIN MESSAGE -->
     {% if app.session.hasFlash('notice') %}
@@ -16,21 +16,23 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Customer-ID</th>
+            <th>Admin-ID</th>
             <th>username</th>
             <th>email</th>
+            <th>active</th>
         </tr>
         </thead>
         <tbody>
-        {% for customer in customers %}
+        {% for user in users %}
         <tr>
-            <td>{{ customer.id }}</td>
-            <td>{{ customer.username }}</td>
-            <td>{{ customer.email }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.isActive }}</td>
             <td>
-                <a href="{{ path('delete_customer', {id: customer.id}) }}" class="btn btn-danger" type="button" >Delete</a>
-                <a href="{{ path('show_customer', {id: customer.id}) }}" class="btn btn-info" type="button">Info</a>
-                <a href="{{ path('edit_customer', { id: customer.id }) }}" class="btn" type="button">Edit</a>
+                <a href="{{ path('delete_user', {id: user.id}) }}" class="btn btn-danger" type="button" >Delete</a>
+                <a href="{{ path('show_user', {id: user.id}) }}" class="btn btn-info" type="button">Info</a>
+                <a href="{{ path('edit_user', { id: user.id }) }}" class="btn" type="button">Edit</a>
             </td>
         </tr>
         {% endfor %}

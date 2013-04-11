@@ -11,16 +11,19 @@
 
             <tbody>
                 <tr>
-                    <td>ID: </td>           <td>{{ user.id }}</td>
+                    <td>ID: </td>           <td>{{ booking.id }}</td>
                 </tr>
                 <tr>
-                    <td>Username: </td>  <td>{{ user.username }}</td>
+                    <td>Start date: </td>  <td>{{ booking.start_date }}</td>
                 </tr>
                 <tr>
-                    <td>Email: </td>      <td>{{ user.email }}</td>
+                    <td>End date: </td>  <td>{{ booking.end_date }}</td>
                 </tr>
                 <tr>
-                    <td>Active: </td>      <td>{{ user.is_active }}</td>
+                    <td>Customer id: </td>  <td>{{ booking.customer_id }}</td>
+                </tr>
+                <tr>
+                    <td>Bed id: </td>  <td>{{ booking.bed_id }}</td>
                 </tr>
             </tbody>
         </table>
@@ -32,7 +35,7 @@
     <table>
         <tr>
             <td>
-                <a href="{{ path('list_user') }}">
+                <a href="{{ path('list_booking') }}">
                     Back to the list
                 </a>
             </td>

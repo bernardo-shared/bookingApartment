@@ -12,30 +12,27 @@ namespace Tsp\AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class FlatType extends AbstractType
+class BookingType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('country')
-            ->add('city')
-            ->add('postcode')
-            ->add('street')
-            ->add('number')
-            ->add('floor');
+            ->add('customer_id')
+            ->add('start_date')
+            ->add('end_date')
+            ->add('bed_id');
     }
 
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' => 'Tsp\AdminBundle\Model\Flat',
+            'data_class' => 'Tsp\AdminBundle\Model\Booking',
         );
     }
 
     public function getName()
     {
-        return 'flat';
+        return 'booking';
     }
 }
 

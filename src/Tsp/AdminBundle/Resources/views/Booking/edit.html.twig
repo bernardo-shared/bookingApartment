@@ -4,9 +4,9 @@
 
 <div class="hero-unit">
 
-    <h2>Customer edition</h2>
+    <h2>Booking edition</h2>
 
-    <form action="{{ path('update_customer', { 'id': customer.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form action="{{ path('update_booking', { 'id': booking.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         {{ form_widget(edit_form) }}
         <p>
             <button type="submit" class="btn btn-primary" >Update</button>
@@ -16,12 +16,12 @@
     <table>
         <tr>
             <td>
-                <a href="{{ path('list_customer') }}">
+                <a href="{{ path('list_booking') }}">
                     Back to the list
                 </a>
             </td>
             <td>
-                <form action="{{ path('delete_customer', { 'id': customer.id }) }}" method="post">
+                <form action="{{ path('delete_boking', { 'id': booking.id }) }}" method="post">
                     {{ form_widget(delete_form) }}
                     <button type="submit" class="btn btn-danger" href="#">Delete</button>
                 </form>

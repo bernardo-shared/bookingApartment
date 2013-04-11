@@ -42,6 +42,38 @@
     </div>
 </div>
 
+{% set route = app.request.attributes.get('_route') %}
+
+{% set active_f_list = '' %}
+{% set active_f_create = '' %}
+{% set active_a_list = '' %}
+{% set active_a_create = '' %}
+{% set active_c_list = '' %}
+{% set active_c_create = '' %}
+{% set active_b_list = '' %}
+{% set active_b_create = '' %}
+{% set active_b_history = '' %}
+
+{% if route == 'list_flat'  %}
+    {% set active_f_list = 'active' %}
+{% elseif route == 'new_flat' %}
+    {% set active_f_create = 'active' %}
+{% elseif route == 'list_user' %}
+    {% set active_a_list = 'active' %}
+{% elseif route == 'new_user' %}
+    {% set active_a_create = 'active' %}
+{% elseif route == 'list_customer' %}
+    {% set active_c_list = 'active' %}
+{% elseif route == 'new_customer' %}
+    {% set active_c_create = 'active' %}
+{% elseif route == 'list_booking' %}
+    {% set active_b_list = 'active' %}
+{% elseif route == 'new_booking' %}
+    {% set active_b_create = 'active' %}
+{% elseif route == 'history_booking' %}
+    {% set active_b_history = 'active' %}
+{% endif %}
+
 <!-- BEGIN ACTIONS -->
 <div class="container-fluid">
     <div class="row-fluid">
@@ -49,17 +81,18 @@
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
                     <li class="nav-header">Flat</li>
-                    <li class="active"><a href="{{ path('list_flat') }}">List</a></li>
-                    <li><a href="{{ path('new_flat') }}">Create</a></li>
-                    <li class="nav-header">User</li>
-                    <li><a href="#">List</a></li>
-                    <li><a href="#">Create</a></li>
+                    <li class="{{ active_f_list }}"><a href="{{ path('list_flat') }}">List</a></li>
+                    <li class="{{ active_f_create }}"><a href="{{ path('new_flat') }}">Create</a></li>
+                    <li class="nav-header">Admin</li>
+                    <li class="{{ active_a_list }}"><a href="{{ path('list_user') }}">List</a></li>
+                    <li class="{{ active_a_create }}"><a href="{{ path('new_user') }}">Create</a></li>
                     <li class="nav-header">Customer</li>
-                    <li><a href="{{ path('list_customer') }}">List</a></li>
-                    <li><a href="{{ path('new_customer') }}">Create</a></li>
+                    <li class="{{ active_c_list }}"><a href="{{ path('list_customer') }}">List</a></li>
+                    <li class="{{ active_c_create }}"><a href="{{ path('new_customer') }}">Create</a></li>
                     <li class="nav-header">Booking</li>
-                    <li><a href="#">List</a></li>
-                    <li><a href="#">History</a></li>
+                    <li class="{{ active_b_list }}"><a href="{{ path('list_booking') }}">List</a></li>
+                    <li class="{{ active_b_create }}"><a href="{{ path('new_booking') }}">Create</a></li>
+                    <li class="{{ active_b_history }}"><a href="{{ path('history_booking') }}">History</a></li>
                 </ul>
             </div><!--/.well -->
         </div><!--/span-->
