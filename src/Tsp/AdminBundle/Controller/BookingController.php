@@ -3,37 +3,46 @@
 namespace Tsp\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Tsp\AdminBundle\Model\Customer;
-use Tsp\AdminBundle\Model\CustomerQuery;
-use Tsp\AdminBundle\Form\CustomerType;
+use Tsp\AdminBundle\Model\Booking;
+use Tsp\AdminBundle\Model\BookingQuery;
+use Tsp\AdminBundle\Form\BookingType;
 
-class CustomerController extends Controller
+class BookingController extends Controller
 {
 
     public function indexAction()
     {
-        $customers = CustomerQuery::create()
+        $bookings = BookingQuery::create()
             ->orderById()
             ->find();
 
-        return $this->render('AdminBundle:Customer:index.html.twig', array('customers' => $customers));
+        return $this->render('AdminBundle:Booking:index.html.twig', array('bookings' => $bookings));
+    }
+
+    public function historyAction()
+    {
+        $bookings = BookingQuery::create()
+            ->orderById()
+            ->find();
+
+        return $this->render('AdminBundle:Booking:history.html.twig', array('bookings' => $bookings));
     }
 
     public function newAction()
     {
-        $customer = new Customer();
-        $form = $this->createForm(new CustomerType(), $customer);
+        $booking = new Booking();
+        $form = $this->createForm(new BookingType(), $booking);
 
-        return $this->render('AdminBundle:Customer:new.html.twig', array(
+        return $this->render('AdminBundle:Booking:new.html.twig', array(
             'form'   => $form->createView()
         ));
     }
 
     public function createAction()
     {
-        $customer  = new Customer();
+        $booking  = new Booking();
         $request = $this->getRequest();
-        $form    = $this->createForm(new CustomerType(), $customer);
+        $form    = $this->createForm(new BookingType(), $booking);
 
         if ('POST' === $request->getMethod()) {
 
@@ -41,31 +50,31 @@ class CustomerController extends Controller
 
             if ($form->isValid()) {
 
-                $customer->save();
+                $booking->save();
                 $this->get('session')->setFlash('notice', 'Your changes were saved!');
 
-                return $this->redirect($this->generateUrl('show_customer', array('id' => $customer->getId())));
+                return $this->redirect($this->generateUrl('show_booking', array('id' => $booking->getId())));
             }
         }
 
-        return $this->render('AdminBundle:Customer:show.html.twig', array(
+        return $this->render('AdminBundle:Booking:show.html.twig', array(
             'form'   => $form->createView() // I the view get flat -> $flat = $form->getData()
         ));
     }
 
     public function editAction($id)
     {
-        $customer = CustomerQuery::create()->findPk($id);
+        $booking = BookingQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$booking) {
             throw $this->createNotFoundException('Unable to find Flat.');
         }
 
-        $editForm = $this->createForm(new CustomerType(), $customer);
+        $editForm = $this->createForm(new BookingType(), $booking);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AdminBundle:Customer:edit.html.twig', array(
-            'customer'      => $customer,
+        return $this->render('AdminBundle:Booking:edit.html.twig', array(
+            'booking'      => $booking,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -73,31 +82,31 @@ class CustomerController extends Controller
 
     public function showAction($id)
     {
-        $customer = CustomerQuery::create()->findPk($id);
+        $booking = BookingQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$booking) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
-        return $this->render('AdminBundle:Customer:show.html.twig', array(
-            'customer' => $customer
+        return $this->render('AdminBundle:Booking:show.html.twig', array(
+            'booking' => $booking
         ));
 
     }
 
     public function updateAction($id)
     {
-        $customer = FlatQuery::create()->findPk($id);
+        $booking = BookingQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$booking) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
             );
         }
 
-        $editForm   = $this->createForm(new CustomerType(), $customer);
+        $editForm   = $this->createForm(new BookingType(), $booking);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -105,12 +114,12 @@ class CustomerController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $customer->save();
-            return $this->redirect($this->generateUrl('edit_customer', array('id' => $id)));
+            $booking->save();
+            return $this->redirect($this->generateUrl('edit_booking', array('id' => $id)));
         }
 
-        return $this->render('AdminBundle:Flat:edit.html.twig', array(
-            'customer'      => $customer,
+        return $this->render('AdminBundle:Booking:edit.html.twig', array(
+            'booking'      => $booking,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -118,22 +127,22 @@ class CustomerController extends Controller
 
     public function deleteAction($id)
     {
-        $customer = CustomerQuery::create()->findPk($id);
+        $booking = BookingQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$booking) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
         try {
-            $customer->delete();
+            $booking->delete();
             $this->get('session')->setFlash('notice', 'Your changes were saved!');
         } catch (Exception $e) {
             $this->get('session')->setFlash('notice', 'Error: Your changes were not saved!');
         }
 
-        return $this->redirect($this->generateUrl('list_customer'));
+        return $this->redirect($this->generateUrl('list_booking'));
     }
 
     private function createDeleteForm($id)

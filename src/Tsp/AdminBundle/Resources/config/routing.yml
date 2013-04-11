@@ -1,7 +1,38 @@
-AdminBundle:
-    resource: "@AdminBundle/Resources/config/routing_flat.yml"
-    prefix:   /
+#AdminBundle:
+#    resource: "@AdminBundle/Resources/config/routing_flat.yml"
+#    prefix:   /
 
+# FLAT
+list_flat:
+    pattern:  /list_flat
+    defaults: { _controller: AdminBundle:Flat:index }
+
+new_flat:
+    pattern:  /new_flat
+    defaults: { _controller: AdminBundle:Flat:new }
+
+create_flat:
+    pattern:  /create_flat
+    defaults: { _controller: AdminBundle:Flat:create }
+
+edit_flat:
+    pattern:  /edit_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:edit }
+
+update_flat:
+    pattern:  /update_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:update }
+
+delete_flat:
+    pattern:  /delete_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:delete }
+
+show_flat:
+    pattern:  /show_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:show }
+
+
+# CUSTOMER
 list_customer:
     pattern:  /list_customer
     defaults: { _controller: AdminBundle:Customer:index }
@@ -30,6 +61,68 @@ show_customer:
     pattern:  /show_customer/{id}
     defaults: { _controller: AdminBundle:Customer:show }
 
+# USER
+list_user:
+    pattern:  /list_user
+    defaults: { _controller: AdminBundle:User:index }
+
+new_user:
+    pattern:  /new_user
+    defaults: { _controller: AdminBundle:User:new }
+
+create_user:
+    pattern:  /create_user
+    defaults: { _controller: AdminBundle:User:create }
+
+edit_user:
+    pattern:  /edit_user/{id}
+    defaults: { _controller: AdminBundle:User:edit }
+
+update_user:
+    pattern:  /update_user/{id}
+    defaults: { _controller: AdminBundle:User:update }
+
+delete_user:
+    pattern:  /delete_user/{id}
+    defaults: { _controller: AdminBundle:User:delete }
+
+show_user:
+    pattern:  /show_user/{id}
+    defaults: { _controller: AdminBundle:User:show }
+
+# BOOKING
+list_booking:
+    pattern:  /list_booking
+    defaults: { _controller: AdminBundle:Booking:index }
+
+new_booking:
+    pattern:  /new_booking
+    defaults: { _controller: AdminBundle:Booking:new }
+
+create_booking:
+    pattern:  /create_booking
+    defaults: { _controller: AdminBundle:Booking:create }
+
+edit_booking:
+    pattern:  /edit_booking/{id}
+    defaults: { _controller: AdminBundle:Booking:edit }
+
+update_booking:
+    pattern:  /update_booking/{id}
+    defaults: { _controller: AdminBundle:Booking:update }
+
+delete_booking:
+    pattern:  /delete_booking/{id}
+    defaults: { _controller: AdminBundle:Booking:delete }
+
+show_booking:
+    pattern:  /show_booking/{id}
+    defaults: { _controller: AdminBundle:Booking:show }
+history_booking:
+    pattern:  /history_booking
+    defaults: { _controller: AdminBundle:Booking:history }
+
+# LOGIN
 login:
     pattern: /login
     defaults: { _controller: AdminBundle:Security:login}

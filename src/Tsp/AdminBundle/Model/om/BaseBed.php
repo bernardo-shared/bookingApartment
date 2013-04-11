@@ -57,7 +57,7 @@ abstract class BaseBed extends BaseObject implements Persistent
 
     /**
      * The value for the type field.
-     * @var        string
+     * @var        int
      */
     protected $type;
 
@@ -117,11 +117,20 @@ abstract class BaseBed extends BaseObject implements Persistent
     /**
      * Get the [type] column value.
      *
-     * @return string
+     * @return int
+     * @throws PropelException - if the stored enum key is unknown.
      */
     public function getType()
     {
-        return $this->type;
+        if (null === $this->type) {
+            return null;
+        }
+        $valueSet = BedPeer::getValueSet(BedPeer::TYPE);
+        if (!isset($valueSet[$this->type])) {
+            throw new PropelException('Unknown stored enum key: ' . $this->type);
+        }
+
+        return $valueSet[$this->type];
     }
 
     /**
@@ -158,13 +167,18 @@ abstract class BaseBed extends BaseObject implements Persistent
     /**
      * Set the value of [type] column.
      *
-     * @param string $v new value
+     * @param int $v new value
      * @return Bed The current object (for fluent API support)
+     * @throws PropelException - if the value is not accepted by this enum.
      */
     public function setType($v)
     {
-        if ($v !== null && is_numeric($v)) {
-            $v = (string) $v;
+        if ($v !== null) {
+            $valueSet = BedPeer::getValueSet(BedPeer::TYPE);
+            if (!in_array($v, $valueSet)) {
+                throw new PropelException(sprintf('Value "%s" is not accepted in this enumerated column', $v));
+            }
+            $v = array_search($v, $valueSet);
         }
 
         if ($this->type !== $v) {
@@ -234,7 +248,7 @@ abstract class BaseBed extends BaseObject implements Persistent
         try {
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-            $this->type = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+            $this->type = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
             $this->room_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
             $this->resetModified();
 
@@ -516,7 +530,7 @@ abstract class BaseBed extends BaseObject implements Persistent
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
                     case '`type`':
-                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
+                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_INT);
                         break;
                     case '`room_id`':
                         $stmt->bindValue($identifier, $this->room_id, PDO::PARAM_INT);
@@ -762,6 +776,10 @@ abstract class BaseBed extends BaseObject implements Persistent
                 $this->setId($value);
                 break;
             case 1:
+                $valueSet = BedPeer::getValueSet(BedPeer::TYPE);
+                if (isset($valueSet[$value])) {
+                    $value = $valueSet[$value];
+                }
                 $this->setType($value);
                 break;
             case 2:
@@ -1300,11 +1318,11 @@ abstract class BaseBed extends BaseObject implements Persistent
     /**
      * return the string representation of this object
      *
-     * @return string The value of the 'type' column
+     * @return string
      */
     public function __toString()
     {
-        return (string) $this->getType();
+        return (string) $this->exportTo(BedPeer::DEFAULT_STRING_FORMAT);
     }
 
     /**

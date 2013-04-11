@@ -3,37 +3,37 @@
 namespace Tsp\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Tsp\AdminBundle\Model\Customer;
-use Tsp\AdminBundle\Model\CustomerQuery;
-use Tsp\AdminBundle\Form\CustomerType;
+use Tsp\AdminBundle\Model\User;
+use Tsp\AdminBundle\Model\UserQuery;
+use Tsp\AdminBundle\Form\UserType;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
 
     public function indexAction()
     {
-        $customers = CustomerQuery::create()
+        $users = UserQuery::create()
             ->orderById()
             ->find();
 
-        return $this->render('AdminBundle:Customer:index.html.twig', array('customers' => $customers));
+        return $this->render('AdminBundle:User:index.html.twig', array('users' => $users));
     }
 
     public function newAction()
     {
-        $customer = new Customer();
-        $form = $this->createForm(new CustomerType(), $customer);
+        $user = new User();
+        $form = $this->createForm(new UserType(), $user);
 
-        return $this->render('AdminBundle:Customer:new.html.twig', array(
+        return $this->render('AdminBundle:User:new.html.twig', array(
             'form'   => $form->createView()
         ));
     }
 
     public function createAction()
     {
-        $customer  = new Customer();
+        $user  = new User();
         $request = $this->getRequest();
-        $form    = $this->createForm(new CustomerType(), $customer);
+        $form    = $this->createForm(new UserType(), $user);
 
         if ('POST' === $request->getMethod()) {
 
@@ -41,31 +41,31 @@ class CustomerController extends Controller
 
             if ($form->isValid()) {
 
-                $customer->save();
+                $user->save();
                 $this->get('session')->setFlash('notice', 'Your changes were saved!');
 
-                return $this->redirect($this->generateUrl('show_customer', array('id' => $customer->getId())));
+                return $this->redirect($this->generateUrl('show_user', array('id' => $user->getId())));
             }
         }
 
-        return $this->render('AdminBundle:Customer:show.html.twig', array(
+        return $this->render('AdminBundle:User:show.html.twig', array(
             'form'   => $form->createView() // I the view get flat -> $flat = $form->getData()
         ));
     }
 
     public function editAction($id)
     {
-        $customer = CustomerQuery::create()->findPk($id);
+        $user = UserQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$user) {
             throw $this->createNotFoundException('Unable to find Flat.');
         }
 
-        $editForm = $this->createForm(new CustomerType(), $customer);
+        $editForm = $this->createForm(new UserType(), $user);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AdminBundle:Customer:edit.html.twig', array(
-            'customer'      => $customer,
+        return $this->render('AdminBundle:User:edit.html.twig', array(
+            'user'      => $user,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -73,31 +73,31 @@ class CustomerController extends Controller
 
     public function showAction($id)
     {
-        $customer = CustomerQuery::create()->findPk($id);
+        $user = UserQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$user) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
-        return $this->render('AdminBundle:Customer:show.html.twig', array(
-            'customer' => $customer
+        return $this->render('AdminBundle:User:show.html.twig', array(
+            'user' => $user
         ));
 
     }
 
     public function updateAction($id)
     {
-        $customer = FlatQuery::create()->findPk($id);
+        $user = UserQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$user) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
             );
         }
 
-        $editForm   = $this->createForm(new CustomerType(), $customer);
+        $editForm   = $this->createForm(new UserType(), $user);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -105,12 +105,12 @@ class CustomerController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $customer->save();
-            return $this->redirect($this->generateUrl('edit_customer', array('id' => $id)));
+            $user->save();
+            return $this->redirect($this->generateUrl('edit_user', array('id' => $id)));
         }
 
-        return $this->render('AdminBundle:Flat:edit.html.twig', array(
-            'customer'      => $customer,
+        return $this->render('AdminBundle:User:edit.html.twig', array(
+            'user'      => $user,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -118,22 +118,22 @@ class CustomerController extends Controller
 
     public function deleteAction($id)
     {
-        $customer = CustomerQuery::create()->findPk($id);
+        $user = UserQuery::create()->findPk($id);
 
-        if (!$customer) {
+        if (!$user) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
         try {
-            $customer->delete();
+            $user->delete();
             $this->get('session')->setFlash('notice', 'Your changes were saved!');
         } catch (Exception $e) {
             $this->get('session')->setFlash('notice', 'Error: Your changes were not saved!');
         }
 
-        return $this->redirect($this->generateUrl('list_customer'));
+        return $this->redirect($this->generateUrl('list_user'));
     }
 
     private function createDeleteForm($id)
