@@ -7,8 +7,6 @@ use Tsp\AdminBundle\Model\Flat;
 use Tsp\AdminBundle\Model\FlatQuery;
 use Tsp\AdminBundle\Form\FlatType;
 
-// http://propelorm.org/cookbook/symfony2/mastering-symfony2-forms-with-propel.html
-
 class FlatController extends Controller
 {
 
@@ -43,7 +41,10 @@ class FlatController extends Controller
             $form->bindRequest($request);
 
             if ($form->isValid()) {
+
                 $flat->save();
+                $this->get('session')->setFlash('notice', 'Your changes were saved!');
+
                 return $this->redirect($this->generateUrl('show_flat', array('id' => $flat->getId())));
             }
         }
@@ -55,19 +56,17 @@ class FlatController extends Controller
 
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $flat = FlatQuery::create()->findPk($id);
 
-        $entity = $em->getRepository('PostBundle:Category')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Category entity.');
+        if (!$flat) {
+            throw $this->createNotFoundException('Unable to find Flat.');
         }
 
-        $editForm = $this->createForm(new CategoryType(), $entity);
+        $editForm = $this->createForm(new FlatType(), $flat);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AdminBundle:Category:edit.html.twig', array(
-            'entity'      => $entity,
+        return $this->render('AdminBundle:Flat:edit.html.twig', array(
+            'flat'      => $flat,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -79,7 +78,7 @@ class FlatController extends Controller
 
         if (!$flat) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No flat found for id '.$id
             );
         }
 
@@ -89,85 +88,62 @@ class FlatController extends Controller
 
     }
 
-//
-//    public function editAction($id)
-//    {
-//        $em = $this->getDoctrine()->getEntityManager();
-//
-//        $entity = $em->getRepository('PostBundle:Category')->find($id);
-//
-//        if (!$entity) {
-//            throw $this->createNotFoundException('Unable to find Category entity.');
-//        }
-//
-//        $editForm = $this->createForm(new CategoryType(), $entity);
-//        $deleteForm = $this->createDeleteForm($id);
-//
-//        return $this->render('AdminBundle:Category:edit.html.twig', array(
-//            'entity'      => $entity,
-//            'edit_form'   => $editForm->createView(),
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
-//
-//    public function updateAction($id)
-//    {
-//        $em = $this->getDoctrine()->getEntityManager();
-//
-//        $entity = $em->getRepository('PostBundle:Category')->find($id);
-//
-//        if (!$entity) {
-//            throw $this->createNotFoundException('Unable to find Category entity.');
-//        }
-//
-//        $editForm   = $this->createForm(new CategoryType(), $entity);
-//        $deleteForm = $this->createDeleteForm($id);
-//
-//        $request = $this->getRequest();
-//
-//        $editForm->bindRequest($request);
-//
-//        if ($editForm->isValid()) {
-//            $em->persist($entity);
-//            $em->flush();
-//
-//            return $this->redirect($this->generateUrl('category_edit', array('id' => $id)));
-//        }
-//
-//        return $this->render('AdminBundle:Category:edit.html.twig', array(
-//            'entity'      => $entity,
-//            'edit_form'   => $editForm->createView(),
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
-//
-//    public function deleteAction($id)
-//    {
-//        $form = $this->createDeleteForm($id);
-//        $request = $this->getRequest();
-//
-//        $form->bindRequest($request);
-//
-//        if ($form->isValid()) {
-//            $em = $this->getDoctrine()->getEntityManager();
-//            $entity = $em->getRepository('PostBundle:Category')->find($id);
-//
-//            if (!$entity) {
-//                throw $this->createNotFoundException('Unable to find Category entity.');
-//            }
-//
-//            $em->remove($entity);
-//            $em->flush();
-//        }
-//
-//        return $this->redirect($this->generateUrl('category'));
-//    }
-//
-//    private function createDeleteForm($id)
-//    {
-//        return $this->createFormBuilder(array('id' => $id))
-//            ->add('id', 'hidden')
-//            ->getForm()
-//            ;
-//    }
+    public function updateAction($id)
+    {
+        $flat = FlatQuery::create()->findPk($id);
+
+        if (!$flat) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $editForm   = $this->createForm(new FlatType(), $flat);
+        $deleteForm = $this->createDeleteForm($id);
+
+        $request = $this->getRequest();
+
+        $editForm->bindRequest($request);
+
+        if ($editForm->isValid()) {
+            $flat->save();
+            return $this->redirect($this->generateUrl('edit_flat', array('id' => $id)));
+        }
+
+        return $this->render('AdminBundle:Flat:edit.html.twig', array(
+            'flat'      => $flat,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    public function deleteAction($id)
+    {
+        $request = $this->getRequest();
+        $id = $request->get('id');
+
+        $flat = FlatQuery::create()->findPk($id);
+
+        if (!$flat) {
+            throw $this->createNotFoundException(
+                'No flat found for id '.$id
+            );
+        }
+
+        try {
+            $flat->delete();
+            $this->get('session')->setFlash('notice', 'Your changes were saved!');
+        } catch (Exception $e) {
+            $this->get('session')->setFlash('notice', 'Error: Your changes were not saved!');
+        }
+
+        return $this->redirect($this->generateUrl('list_flat'));
+    }
+
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder(array('id' => $id))
+            ->add('id', 'hidden')
+            ->getForm();
+    }
 }

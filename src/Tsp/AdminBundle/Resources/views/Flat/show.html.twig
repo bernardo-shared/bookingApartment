@@ -1,2 +1,24 @@
+{% extends "AdminBundle::layout.html.twig" %}
 
-<p>Description flat: {{ flat.description }}</p>
+{% block content %}
+
+    <!-- BEGIN BLOCK -->
+    <div class="hero-unit">
+
+        <p>Description flat: {{ flat.description }}</p>
+
+    </div>
+    <!-- END BLOCK -->
+
+    <table>
+        <tr>
+            <td>
+                <a href="{{ path('list_flat') }}">
+                    Back to the list
+                </a>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}

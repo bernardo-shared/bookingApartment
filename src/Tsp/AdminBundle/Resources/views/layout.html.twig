@@ -17,8 +17,7 @@
     {% endstylesheets %}
 
 </head>
-<body class='default'>
-
+<body>
 
 <!-- BEGIN BOOSTRAP -->
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,14 +42,15 @@
     </div>
 </div>
 
+<!-- BEGIN ACTIONS -->
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span3">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
                     <li class="nav-header">Flat</li>
-                    <li class="active"><a href="#">List</a></li>
-                    <li><a href="#">Create</a></li>
+                    <li class="active"><a href="{{ path('list_flat') }}">List</a></li>
+                    <li><a href="{{ path('new_flat') }}">Create</a></li>
                     <li class="nav-header">User</li>
                     <li><a href="#">List</a></li>
                     <li><a href="#">Create</a></li>
@@ -69,19 +69,20 @@
 
         </div><!--/span-->
 
-
-
     </div><!--/row-->
 
     <hr>
 
     <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Trivago 2013</p>
     </footer>
 
 </div>
+<!-- END ACTIONS -->
+
 <!-- END BOOSTRAP -->
 
+<script type="text/javascript" src="{{ asset('/js/jquery.js') }}"></script>
 {% javascripts '%kernel.root_dir%/../vendor/bootstrap/js/*' %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
