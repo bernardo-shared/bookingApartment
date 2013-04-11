@@ -19,22 +19,23 @@
             <div id="navigation" class="navbar navbar-inverse navbar-fixed-top">
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="brand">BookingApartment</a>
+                        <a class="brand" href="{{ path('homepage') }}">BookingApartment</a>
                         {% block navigation %}{% endblock %}
                 </div>
             </div>
         </header>
 
-        {% block content %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
 
-        {% javascripts
-            '%kernel.root_dir%/../web/js/*'
-            '@FrontBundle/Resources/public/js/*'
-            '%kernel.root_dir%/../vendor/bootstrap/js/*'
-        %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-
+    {% block js %}
+    {% javascripts
+        '%kernel.root_dir%/../web/js/jquery.js'
+        '@FrontBundle/Resources/public/js/code.js'
+        '%kernel.root_dir%/../vendor/bootstrap/js/bootstrap-dropdown.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% endblock %}
     </body>
 </html>

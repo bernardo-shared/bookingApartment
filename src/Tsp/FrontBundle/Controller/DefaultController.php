@@ -10,6 +10,7 @@ use Tsp\FrontBundle\Resources\forms\formLogin;
 use Tsp\FrontBundle\Resources\forms\formRegister;
 
 use Tsp\AdminBundle\Model\FlatQuery;
+use Tsp\AdminBundle\Model\RoomQuery;
 
 use Tsp\AdminBundle\Model\Customer;
 
@@ -83,5 +84,30 @@ class DefaultController extends Controller
     {
         return $this->render('FrontBundle:Default:customer.html.twig');
     }
+
+
+    public function showAction($id)
+    {
+        $login = $this->createForm(
+            new formLogin()
+        );
+
+        $flat = FlatQuery::create()->findPk($id);
+        $room = RoomQuery::create()->findByFlatId($flat);
+
+        if (!$flat) {
+            throw $this->createNotFoundException(
+                'No flat found for id '.$id
+            );
+        }
+
+        return $this->render('FrontBundle:Default:show.html.twig', array(
+            'flat' => $flat,
+            'login' => $login->createView(),
+            'room' => $room
+        ));
+
+    }
+
 
 }

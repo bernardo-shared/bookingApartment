@@ -1,0 +1,103 @@
+{% extends "FrontBundle::base.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block title %}{{ flat.description }}{% endblock %}
+    {% stylesheets
+    '%kernel.root_dir%/../web/js/jqwidgets/styles/jqx.base.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+
+
+{% block navigation %}
+    <div class="nav-collapse">
+        <ul class="nav pull-right">
+            <li><a href="{{ path('register') }}">Sign Up</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                    <form action="{{ path('customer') }}" method="post" {{ form_enctype(login) }}>
+                        {{ form_widget(login) }}
+                        <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
+                        <label class="string optional" for="user_remember_me"> Remember me</label>
+
+                        <input class="btn btn-success" type="submit" name="commit" value="Sign In" />
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="hero-unit">
+        
+        <div class="row-fluid">
+            <div class="span4">
+                <img src="{{ asset('bundles/front/images/room.jpg') }}" class="img-rounded" width="270">
+            </div>
+            <div class=" offset2 span8">
+                <h3 class="title-flat">{{ flat.description }}</h3>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>Country: </td>
+                        <td>{{ flat.country }}</td>
+                    </tr>
+                    <tr>
+                        <td>City: </td>
+                        <td>{{ flat.city }}</td>
+                    </tr>
+                    <tr>
+                        <td>Postcode: </td>
+                        <td>{{ flat.postcode }}</td>
+                    </tr>
+                    <tr>
+                        <td>Street: </td>
+                        <td>{{ flat.street}}</td>
+                    </tr>
+                    <tr>
+                        <td>Number: </td>
+                        <td>{{ flat.number }}</td>
+                    </tr>
+                    <tr>
+                        <td>Floor: </td>
+                        <td>{{ flat.floor }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <h4>Dates available in {{ flat.description }}</h4>
+            <div id='jqxWidget'></div>
+            <div style='font-size: 13px; font-family: Verdana;' id='selection'></div>
+        </div>
+    </div>
+
+    <a href="{{ path('homepage') }}"><< Back to the homepage</a>
+</div>
+
+
+{% endblock %}
+
+
+{% block js %}
+    {{ parent() }}
+    {% javascripts
+    '%kernel.root_dir%/../web/js/jqwidgets/jqxcore.js'
+    '%kernel.root_dir%/../web/js/jqwidgets/jqxdatetimeinput.js'
+    '%kernel.root_dir%/../web/js/jqwidgets/jqxcalendar.js'
+    '%kernel.root_dir%/../web/js/jqwidgets/jqxtooltip.js'
+    '%kernel.root_dir%/../web/js/jqwidgets/globalization/globalize.js'
+    '@FrontBundle/Resources/public/js/calendar.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

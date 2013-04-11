@@ -18,7 +18,7 @@
                         <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
                         <label class="string optional" for="user_remember_me"> Remember me</label>
 
-                        <input class="btn btn-success" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+                        <input class="btn btn-success" type="submit" name="commit" value="Sign In" />
                     </form>
                 </div>
             </li>
@@ -32,18 +32,22 @@
             <div class="span3 well">
 
             </div>
-            <div class="span9">
+            <div class="span9 list_flats">
                 <ul class="thumbnails">
                     {% for flat in flats %}
                         <li class="span12">
                             <div class="thumbnail">
                                 <div class="row-fluid">
                                     <div class="span3">
-                                        <img src="{{ asset('bundles/front/images/room.jpg') }}" class="img-rounded" width="200">
+                                        <img src="{{ asset('bundles/front/images/room.jpg') }}" class="img-rounded">
                                     </div>
                                     <div class="span9">
                                         <h3>{{ flat.description }}</h3>
-                                        <p>{{ flat.country }}</p>
+                                        <address>
+                                            <strong>{{ flat.street }}, {{ flat.number }}</strong><br>
+                                            {{ flat.city }}, {{ flat.country }} {{ flat.postcode }}<br>
+                                        </address>
+                                        <a href="{{ path('flat_details', {id: flat.id}) }}" class="btn" type="button">View details</a>
                                     </div>
                                 </div>
                             </div>

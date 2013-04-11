@@ -84,3 +84,7 @@
 [lessphp]
     git=https://github.com/leafo/lessphp.git
     target=/lessphp
+
+[jquery-ui]
+    git=https://github.com/jquery/jquery-ui.git
+    target=/jqui

@@ -9,3 +9,7 @@ register:
 customer:
     pattern:  /register_success/
     defaults: { _controller: FrontBundle:Default:customer }
+
+flat_details:
+    pattern:  /flat_details/{id}
+    defaults: { _controller: FrontBundle:Default:show }
