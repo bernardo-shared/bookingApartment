@@ -7,33 +7,33 @@ use Tsp\AdminBundle\Model\Flat;
 use Tsp\AdminBundle\Model\FlatQuery;
 use Tsp\AdminBundle\Form\FlatType;
 
-class FlatController extends Controller
+class CustomerController extends Controller
 {
 
     public function indexAction()
     {
-        $flats = FlatQuery::create()
+        $customers = CustomerQuery::create()
             ->orderById()
             ->find();
 
-        return $this->render('AdminBundle:Flat:index.html.twig', array('flats' => $flats));
+        return $this->render('AdminBundle:Customer:index.html.twig', array('customers' => $customers));
     }
 
     public function newAction()
     {
-        $model = new Flat();
-        $form = $this->createForm(new FlatType(), $model);
+        $customer = new Customer();
+        $form = $this->createForm(new CustomerType(), $customer);
 
-        return $this->render('AdminBundle:Flat:new.html.twig', array(
+        return $this->render('AdminBundle:Customer:new.html.twig', array(
             'form'   => $form->createView()
         ));
     }
 
     public function createAction()
     {
-        $flat  = new Flat();
+        $customer  = new Customer();
         $request = $this->getRequest();
-        $form    = $this->createForm(new FlatType(), $flat);
+        $form    = $this->createForm(new CustomerType(), $customer);
 
         if ('POST' === $request->getMethod()) {
 
@@ -41,31 +41,31 @@ class FlatController extends Controller
 
             if ($form->isValid()) {
 
-                $flat->save();
+                $customer->save();
                 $this->get('session')->setFlash('notice', 'Your changes were saved!');
 
-                return $this->redirect($this->generateUrl('show_flat', array('id' => $flat->getId())));
+                return $this->redirect($this->generateUrl('show_customer', array('id' => $customer->getId())));
             }
         }
 
-        return $this->render('AdminBundle:Flat:show.html.twig', array(
+        return $this->render('AdminBundle:Customer:show.html.twig', array(
             'form'   => $form->createView() // I the view get flat -> $flat = $form->getData()
         ));
     }
 
     public function editAction($id)
     {
-        $flat = FlatQuery::create()->findPk($id);
+        $customer = CustomerQuery::create()->findPk($id);
 
-        if (!$flat) {
+        if (!$customer) {
             throw $this->createNotFoundException('Unable to find Flat.');
         }
 
-        $editForm = $this->createForm(new FlatType(), $flat);
+        $editForm = $this->createForm(new CustomerType(), $customer);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AdminBundle:Flat:edit.html.twig', array(
-            'flat'      => $flat,
+        return $this->render('AdminBundle:Customer:edit.html.twig', array(
+            'customer'      => $customer,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -73,31 +73,31 @@ class FlatController extends Controller
 
     public function showAction($id)
     {
-        $flat = FlatQuery::create()->findPk($id);
+        $customer = CustomerQuery::create()->findPk($id);
 
-        if (!$flat) {
+        if (!$customer) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
-        return $this->render('AdminBundle:Flat:show.html.twig', array(
-            'flat' => $flat
+        return $this->render('AdminBundle:Customer:show.html.twig', array(
+            'customer' => $customer
         ));
 
     }
 
     public function updateAction($id)
     {
-        $flat = FlatQuery::create()->findPk($id);
+        $customer = FlatQuery::create()->findPk($id);
 
-        if (!$flat) {
+        if (!$customer) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
             );
         }
 
-        $editForm   = $this->createForm(new FlatType(), $flat);
+        $editForm   = $this->createForm(new CustomerType(), $customer);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -105,12 +105,12 @@ class FlatController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $flat->save();
-            return $this->redirect($this->generateUrl('edit_flat', array('id' => $id)));
+            $customer->save();
+            return $this->redirect($this->generateUrl('edit_customer', array('id' => $id)));
         }
 
         return $this->render('AdminBundle:Flat:edit.html.twig', array(
-            'flat'      => $flat,
+            'customer'      => $customer,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -118,25 +118,22 @@ class FlatController extends Controller
 
     public function deleteAction($id)
     {
-        $request = $this->getRequest();
-        $id = $request->get('id');
+        $customer = CustomerQuery::create()->findPk($id);
 
-        $flat = FlatQuery::create()->findPk($id);
-
-        if (!$flat) {
+        if (!$customer) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
         try {
-            $flat->delete();
+            $customer->delete();
             $this->get('session')->setFlash('notice', 'Your changes were saved!');
         } catch (Exception $e) {
             $this->get('session')->setFlash('notice', 'Error: Your changes were not saved!');
         }
 
-        return $this->redirect($this->generateUrl('list_flat'));
+        return $this->redirect($this->generateUrl('list_customer'));
     }
 
     private function createDeleteForm($id)

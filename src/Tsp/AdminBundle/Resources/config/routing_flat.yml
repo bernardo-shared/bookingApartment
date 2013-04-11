@@ -1,0 +1,34 @@
+list_flat:
+    pattern:  /list_flat
+    defaults: { _controller: AdminBundle:Flat:index }
+
+new_flat:
+    pattern:  /new_flat
+    defaults: { _controller: AdminBundle:Flat:new }
+
+create_flat:
+    pattern:  /create_flat
+    defaults: { _controller: AdminBundle:Flat:create }
+
+edit_flat:
+    pattern:  /edit_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:edit }
+
+update_flat:
+    pattern:  /update_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:update }
+
+delete_flat:
+    pattern:  /delete_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:delete }
+
+show_flat:
+    pattern:  /show_flat/{id}
+    defaults: { _controller: AdminBundle:Flat:show }
+
+login:
+    pattern: /login
+    defaults: { _controller: AdminBundle:Security:login}
+
+login_check:
+    pattern: /login_check

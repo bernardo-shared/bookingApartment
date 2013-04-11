@@ -1,7 +1,3 @@
-AdminBundle:
-    resource: "@AdminBundle/Resources/config/routing_flat.yml"
-    prefix:   /
-
 list_customer:
     pattern:  /list_customer
     defaults: { _controller: AdminBundle:Customer:index }
