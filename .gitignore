@@ -6,7 +6,7 @@ app/bootstrap*
 */cache/*
 web/uploads/*
 .idea/*
-
+vendor/*
 # Configuration files
 #app/config/parameters.ini
 #app/config/parameters.yml
