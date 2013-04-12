@@ -3,37 +3,38 @@
 namespace Tsp\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Tsp\AdminBundle\Model\User;
-use Tsp\AdminBundle\Model\UserQuery;
-use Tsp\AdminBundle\Form\UserType;
+use Tsp\AdminBundle\Model\Room;
+use Tsp\AdminBundle\Model\RoomQuery;
+use Tsp\AdminBundle\Form\RoomType;
+use Tsp\AdminBundle\Model\BedQuery;
 
-class UserController extends Controller
+class RoomController extends Controller
 {
 
     public function indexAction()
     {
-        $users = UserQuery::create()
+        $rooms = RoomQuery::create()
             ->orderById()
             ->find();
 
-        return $this->render('AdminBundle:User:index.html.twig', array('users' => $users));
+        return $this->render('AdminBundle:Room:index.html.twig', array('rooms' => $rooms));
     }
 
     public function newAction()
     {
-        $user = new User();
-        $form = $this->createForm(new UserType(), $user);
+        $room = new Room();
+        $form = $this->createForm(new RoomType(), $room);
 
-        return $this->render('AdminBundle:User:new.html.twig', array(
+        return $this->render('AdminBundle:Room:new.html.twig', array(
             'form'   => $form->createView()
         ));
     }
 
     public function createAction()
     {
-        $user  = new User();
+        $room  = new Room();
         $request = $this->getRequest();
-        $form    = $this->createForm(new UserType(), $user);
+        $form    = $this->createForm(new RoomType(), $room);
 
         if ('POST' === $request->getMethod()) {
 
@@ -41,31 +42,31 @@ class UserController extends Controller
 
             if ($form->isValid()) {
 
-                $user->save();
+                $room->save();
                 $this->get('session')->setFlash('notice', 'Your changes were saved!');
 
-                return $this->redirect($this->generateUrl('show_user', array('id' => $user->getId())));
+                return $this->redirect($this->generateUrl('show_room', array('id' => $room->getId())));
             }
         }
 
-        return $this->render('AdminBundle:User:show.html.twig', array(
+        return $this->render('AdminBundle:Room:show.html.twig', array(
             'form'   => $form->createView() // I the view get flat -> $flat = $form->getData()
         ));
     }
 
     public function editAction($id)
     {
-        $user = UserQuery::create()->findPk($id);
+        $room = RoomQuery::create()->findPk($id);
 
-        if (!$user) {
+        if (!$room) {
             throw $this->createNotFoundException('Unable to find Flat.');
         }
 
-        $editForm = $this->createForm(new UserType(), $user);
+        $editForm = $this->createForm(new RoomType(), $room);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('AdminBundle:User:edit.html.twig', array(
-            'user'      => $user,
+        return $this->render('AdminBundle:Room:edit.html.twig', array(
+            'room'      => $room,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -73,31 +74,31 @@ class UserController extends Controller
 
     public function showAction($id)
     {
-        $user = UserQuery::create()->findPk($id);
+        $room = RoomQuery::create()->findPk($id);
 
-        if (!$user) {
+        if (!$room) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
-        return $this->render('AdminBundle:User:show.html.twig', array(
-            'user' => $user
+        return $this->render('AdminBundle:Room:show.html.twig', array(
+            'room' => $room
         ));
 
     }
 
     public function updateAction($id)
     {
-        $user = UserQuery::create()->findPk($id);
+        $room = RoomQuery::create()->findPk($id);
 
-        if (!$user) {
+        if (!$room) {
             throw $this->createNotFoundException(
                 'No product found for id '.$id
             );
         }
 
-        $editForm   = $this->createForm(new UserType(), $user);
+        $editForm   = $this->createForm(new RoomType(), $room);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -105,13 +106,13 @@ class UserController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $user->save();
+            $room->save();
             $this->get('session')->setFlash('notice', 'Your changes were saved!');
-            return $this->redirect($this->generateUrl('edit_user', array('id' => $id)));
+            return $this->redirect($this->generateUrl('edit_room', array('id' => $id)));
         }
 
-        return $this->render('AdminBundle:User:edit.html.twig', array(
-            'user'      => $user,
+        return $this->render('AdminBundle:Room:edit.html.twig', array(
+            'room'      => $room,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -119,22 +120,26 @@ class UserController extends Controller
 
     public function deleteAction($id)
     {
-        $user = UserQuery::create()->findPk($id);
+        $room = RoomQuery::create()->findPk($id);
 
-        if (!$user) {
+        if (!$room) {
             throw $this->createNotFoundException(
                 'No flat found for id '.$id
             );
         }
 
         try {
-            $user->delete();
+            $beds = BedQuery::create()->findByRoomId($room->getId());
+
+            foreach ($beds as $bed) $bed->delete();
+
+            $room->delete();
             $this->get('session')->setFlash('notice', 'Your changes were saved!');
         } catch (Exception $e) {
             $this->get('session')->setFlash('notice', 'Error: Your changes were not saved!');
         }
 
-        return $this->redirect($this->generateUrl('list_user'));
+        return $this->redirect($this->generateUrl('list_room'));
     }
 
     private function createDeleteForm($id)

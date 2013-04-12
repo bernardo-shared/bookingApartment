@@ -1,0 +1,41 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <h1>List room</h1>
+
+    <!-- BEGIN MESSAGE -->
+    {% if app.session.hasFlash('notice') %}
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert" onclick="jQuery('.alert').fadeOut('slow')">&times;</button>
+        <strong>Notice</strong> {{ app.session.flash('notice') }}
+    </div>
+    {% endif %}
+    <!-- END MESSAGE -->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Room-ID</th>
+            <th>Description</th>
+            <th>Flat-ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td>{{ room.id }}</td>
+            <td>{{ room.description }}</td>
+            <td>{{ room.Flat.description }} (ID: {{ room.Flat.id }})</td>
+            <td>
+                <a href="{{ path('delete_room', {id: room.id}) }}" class="btn btn-danger" type="button" >Delete</a>
+                <a href="{{ path('show_room', {id: room.id}) }}" class="btn btn-info" type="button">Info</a>
+                <a href="{{ path('new_bed', { id: room.id }) }}" class="btn" type="button">Create bed</a>
+                <a href="{{ path('edit_room', { id: room.id }) }}" class="btn" type="button">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -534,17 +534,6 @@ abstract class BaseBedPeer
         return array($obj, $col);
     }
 
-    /**
-     * Gets the SQL value for Type ENUM value
-     *
-     * @param  string $enumVal ENUM value to get SQL value for
-     * @return int             SQL value
-     */
-    public static function getTypeSqlValue($enumVal)
-    {
-        return BedPeer::getSqlValueForEnum(BedPeer::TYPE, $enumVal);
-    }
-
 
     /**
      * Returns the number of rows matching criteria, joining the related Room table

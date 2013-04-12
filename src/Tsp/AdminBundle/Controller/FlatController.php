@@ -106,6 +106,7 @@ class FlatController extends Controller
 
         if ($editForm->isValid()) {
             $flat->save();
+            $this->get('session')->setFlash('notice', 'Your changes were saved!');
             return $this->redirect($this->generateUrl('edit_flat', array('id' => $id)));
         }
 

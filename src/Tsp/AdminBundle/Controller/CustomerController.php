@@ -106,6 +106,7 @@ class CustomerController extends Controller
 
         if ($editForm->isValid()) {
             $customer->save();
+            $this->get('session')->setFlash('notice', 'Your changes were saved!');
             return $this->redirect($this->generateUrl('edit_customer', array('id' => $id)));
         }
 

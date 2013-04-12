@@ -43,7 +43,7 @@ class BedTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('type', 'Type', 'ENUM', true, null, null);
+        $this->addColumn('type', 'Type', 'VARCHAR', true, null, null);
         $this->getColumn('type', false)->setValueSet(array (
   0 => 'Sofa',
   1 => 'Single',

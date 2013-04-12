@@ -115,6 +115,7 @@ class BookingController extends Controller
 
         if ($editForm->isValid()) {
             $booking->save();
+            $this->get('session')->setFlash('notice', 'Your changes were saved!');
             return $this->redirect($this->generateUrl('edit_booking', array('id' => $id)));
         }
 

@@ -1,0 +1,40 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <!-- BEGIN BLOCK -->
+    <div class="hero-unit">
+
+
+        <!-- BEGIN TABLE -->
+        <table class="table">
+
+            <tbody>
+                <tr>
+                    <td>ID: </td>   <td>{{ bed.id }}</td>
+                </tr>
+                <tr>
+                    <td>Type: </td>  <td>{{ bed.type }}</td>
+                </tr>
+                <tr>
+                    <td>Room: </td>   <td>{{ bed.Room.description }} (Id: {{ bed.Room.id }})</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- END TABLE -->
+
+    </div>
+    <!-- END BLOCK -->
+
+    <table>
+        <tr>
+            <td>
+                <a href="{{ path('list_bed') }}">
+                    Back to the list
+                </a>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}

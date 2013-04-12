@@ -6,6 +6,15 @@
 
     <h2>Flat edition</h2>
 
+    <!-- BEGIN MESSAGE -->
+    {% if app.session.hasFlash('notice') %}
+        <div class="alert">
+            <button type="button" class="close" data-dismiss="alert" onclick="jQuery('.alert').fadeOut('slow')">&times;</button>
+            <strong>Notice</strong> {{ app.session.flash('notice') }}
+        </div>
+    {% endif %}
+    <!-- END MESSAGE -->
+
     <form action="{{ path('update_flat', { 'id': flat.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         {{ form_widget(edit_form) }}
         <p>

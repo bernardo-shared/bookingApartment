@@ -122,6 +122,64 @@ history_booking:
     pattern:  /history_booking
     defaults: { _controller: AdminBundle:Booking:history }
 
+# ROOM
+list_room:
+    pattern:  /list_room
+    defaults: { _controller: AdminBundle:Room:index }
+
+new_room:
+    pattern:  /new_room
+    defaults: { _controller: AdminBundle:Room:new }
+
+create_room:
+    pattern:  /create_room
+    defaults: { _controller: AdminBundle:Room:create }
+
+edit_room:
+    pattern:  /edit_room/{id}
+    defaults: { _controller: AdminBundle:Room:edit }
+
+update_room:
+    pattern:  /update_room/{id}
+    defaults: { _controller: AdminBundle:Room:update }
+
+delete_room:
+    pattern:  /delete_room/{id}
+    defaults: { _controller: AdminBundle:Room:delete }
+
+show_room:
+    pattern:  /show_room/{id}
+    defaults: { _controller: AdminBundle:Room:show }
+
+# BED
+list_bed:
+    pattern:  /list_bed
+    defaults: { _controller: AdminBundle:Bed:index }
+
+new_bed:
+    pattern:  /new_bed
+    defaults: { _controller: AdminBundle:Bed:new }
+
+create_bed:
+    pattern:  /create_bed
+    defaults: { _controller: AdminBundle:Bed:create }
+
+edit_bed:
+    pattern:  /edit_bed/{id}
+    defaults: { _controller: AdminBundle:Bed:edit }
+
+update_bed:
+    pattern:  /update_bed/{id}
+    defaults: { _controller: AdminBundle:Bed:update }
+
+delete_bed:
+    pattern:  /delete_bed/{id}
+    defaults: { _controller: AdminBundle:Bed:delete }
+
+show_bed:
+    pattern:  /show_bed/{id}
+    defaults: { _controller: AdminBundle:Bed:show }
+
 # LOGIN
 login:
     pattern: /login

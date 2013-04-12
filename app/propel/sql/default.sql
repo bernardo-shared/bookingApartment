@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `bed`;
 CREATE TABLE `bed`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `type` TINYINT NOT NULL,
+    `type` ENUM('Sofa','Single','TWW') NOT NULL,
     `room_id` INTEGER,
     PRIMARY KEY (`id`),
     INDEX `bed_FI_1` (`room_id`),

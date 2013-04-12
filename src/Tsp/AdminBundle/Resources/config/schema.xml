@@ -35,7 +35,8 @@
         <parameter name="Charset" value="utf8"/>
     </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-    <column name="type" type="enum" required="true" valueSet="Sofa, Single, TWW"/>
+    <!--<column name="type" type="enum" required="true" valueSet="Sofa, Single, TWW"/> !!!! NOT WORK    -->
+    <column name="type" type="varchar" required="true" sqlType="ENUM('Sofa','Single','TWW')" />
     <column name="room_id" type="integer" />
     <foreign-key foreignTable="room">
         <reference local="room_id" foreign="id" />

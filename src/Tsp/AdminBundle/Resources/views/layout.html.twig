@@ -53,6 +53,8 @@
 {% set active_b_list = '' %}
 {% set active_b_create = '' %}
 {% set active_b_history = '' %}
+{% set active_r_list = '' %}
+{% set active_r_create = '' %}
 
 {% if route == 'list_flat'  %}
     {% set active_f_list = 'active' %}
@@ -72,6 +74,10 @@
     {% set active_b_create = 'active' %}
 {% elseif route == 'history_booking' %}
     {% set active_b_history = 'active' %}
+{% elseif route == 'list_room' or route == 'list_bed' %}
+    {% set active_r_list = 'active' %}
+{% elseif route == 'new_room' or route == 'new_bed' %}
+    {% set active_r_create = 'active' %}
 {% endif %}
 
 <!-- BEGIN ACTIONS -->
@@ -83,12 +89,19 @@
                     <li class="nav-header">Flat</li>
                     <li class="{{ active_f_list }}"><a href="{{ path('list_flat') }}">List</a></li>
                     <li class="{{ active_f_create }}"><a href="{{ path('new_flat') }}">Create</a></li>
+
+                    <li class="nav-header">Room</li>
+                    <li class="{{ active_r_list }}"><a href="{{ path('list_room') }}">List</a></li>
+                    <li class="{{ active_r_create }}"><a href="{{ path('new_room') }}">Create</a></li>
+
                     <li class="nav-header">Admin</li>
                     <li class="{{ active_a_list }}"><a href="{{ path('list_user') }}">List</a></li>
                     <li class="{{ active_a_create }}"><a href="{{ path('new_user') }}">Create</a></li>
+
                     <li class="nav-header">Customer</li>
                     <li class="{{ active_c_list }}"><a href="{{ path('list_customer') }}">List</a></li>
                     <li class="{{ active_c_create }}"><a href="{{ path('new_customer') }}">Create</a></li>
+
                     <li class="nav-header">Booking</li>
                     <li class="{{ active_b_list }}"><a href="{{ path('list_booking') }}">List</a></li>
                     <li class="{{ active_b_create }}"><a href="{{ path('new_booking') }}">Create</a></li>
