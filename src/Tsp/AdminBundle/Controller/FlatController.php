@@ -119,9 +119,6 @@ class FlatController extends Controller
 
     public function deleteAction($id)
     {
-        $request = $this->getRequest();
-        $id = $request->get('id');
-
         $flat = FlatQuery::create()->findPk($id);
 
         if (!$flat) {

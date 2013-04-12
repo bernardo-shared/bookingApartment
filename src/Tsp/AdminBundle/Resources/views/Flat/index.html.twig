@@ -30,7 +30,7 @@
         <tbody>
         {% for flat in flats %}
         <tr>
-            <td>{{ flat.id }}</td>
+            <td><a href="{{ path('show_flat', {id: flat.id}) }}">#{{ flat.id }}</a></td>
             <td>{{ flat.description }}</td>
             <td>{{ flat.country }}</td>
             <td>{{ flat.city }}</td>
@@ -41,6 +41,7 @@
             <td>
                 <a href="{{ path('delete_flat', {id: flat.id}) }}" class="btn btn-danger" type="button" >Delete</a>
                 <a href="{{ path('show_flat', {id: flat.id}) }}" class="btn btn-info" type="button">Info</a>
+                <a href="#" class="btn btn-info" type="button">View rooms</a>
                 <a href="{{ path('edit_flat', { id: flat.id }) }}" class="btn" type="button">Edit</a>
             </td>
         </tr>

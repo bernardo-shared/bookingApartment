@@ -25,7 +25,7 @@
         <tbody>
         {% for user in users %}
         <tr>
-            <td>{{ user.id }}</td>
+            <td><a href="{{ path('show_user', { id: user.id }) }}">#{{ user.id }}</a></td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.isActive }}</td>

@@ -24,7 +24,7 @@
         <tbody>
         {% for customer in customers %}
         <tr>
-            <td>{{ customer.id }}</td>
+            <td><a href="{{ path('show_customer', { id: customer.id }) }}">#{{ customer.id }}</a></td>
             <td>{{ customer.username }}</td>
             <td>{{ customer.email }}</td>
             <td>

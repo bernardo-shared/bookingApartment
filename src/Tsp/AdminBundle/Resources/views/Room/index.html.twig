@@ -18,13 +18,13 @@
         <tr>
             <th>Room-ID</th>
             <th>Description</th>
-            <th>Flat-ID</th>
+            <th>Flat</th>
         </tr>
         </thead>
         <tbody>
         {% for room in rooms %}
         <tr>
-            <td>{{ room.id }}</td>
+            <td><a href="{{ path('show_room', {id: room.id}) }}">#{{ room.id }}</a></td>
             <td>{{ room.description }}</td>
             <td><a href="{{ path('show_flat', {id: room.Flat.id}) }}">{{ room.Flat.description }} (ID: {{ room.Flat.id }})</a></td>
             <td>

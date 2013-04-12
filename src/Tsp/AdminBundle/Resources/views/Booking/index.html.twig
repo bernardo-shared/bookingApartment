@@ -16,20 +16,21 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Customer-ID</th>
+            <th>Booking-ID</th>
             <th>start date</th>
             <th>end date</th>
-            <th>bed id</th>
+            <th>Customer</th>
+            <th>Room/Bed</th>
         </tr>
         </thead>
         <tbody>
         {% for booking in bookings %}
         <tr>
-            <td>{{ booking.id }}</td>
-            <td>{{ booking.start_date }}</td>
-            <td>{{ booking.end_date }}</td>
-            <td>{{ booking.customer_id }}</td>
-            <td>{{ booking.bed_id }}</td>
+            <td><a href="{{ path('show_booking', { id: booking.id }) }}">#{{ booking.id }}</a></td>
+            <td>{{ booking.StartDate }}</td>
+            <td>{{ booking.EndDate }}</td>
+            <td><a href="{{ path('show_customer', {id: booking.Customer.id}) }}">{{ booking.Customer.username }} {{ booking.Customer.email }} (Id: {{ booking.Customer.id }})</a></td>
+            <td><span style="color: darkgreen">Room</span>: {{ booking.Bed.Room.description }} <span style="color: darkgreen">Bed</span>: {{ booking.Bed.type }}</td>
             <td>
                 <a href="{{ path('delete_booking', {id: booking.id}) }}" class="btn btn-danger" type="button" >Delete</a>
                 <a href="{{ path('show_booking', {id: booking.id}) }}" class="btn btn-info" type="button">Info</a>
