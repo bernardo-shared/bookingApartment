@@ -1,0 +1,48 @@
+{% extends "FrontBundle::base.html.twig" %}
+
+{% block head %}
+    {{ parent() }}
+    {% block title %}{{ user.username }}{% endblock %}
+{% endblock %}
+
+{% block content %}
+
+    <!-- BEGIN BLOCK -->
+    <div class="hero-unit">
+
+
+        <!-- BEGIN TABLE -->
+        <table class="table">
+
+            <tbody>
+            <tr>
+                <td>ID: </td>           <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <td>Username: </td>  <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td>Email: </td>      <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td>Active: </td>      <td>{{ user.is_active }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- END TABLE -->
+
+    </div>
+    <!-- END BLOCK -->
+
+    <table>
+        <tr>
+            <td>
+                <a href="{{ path('list_user') }}">
+                    Back to the list
+                </a>
+            </td>
+        </tr>
+    </table>
+
+
+{% endblock %}

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Tsp\FrontBundle\Resources\forms\formLogin;
 use Tsp\FrontBundle\Resources\forms\formRegister;
+use Tsp\FrontBundle\Resources\forms\formBook;
 
 use Tsp\AdminBundle\Model\FlatQuery;
 use Tsp\AdminBundle\Model\RoomQuery;
@@ -29,9 +30,6 @@ class DefaultController extends Controller
             ->orderById()
             ->find();
 
-
-
-
         return $this->render(
             'FrontBundle:Default:index.html.twig',
             array(
@@ -43,31 +41,16 @@ class DefaultController extends Controller
     public function registerAction()
     {
         $customer = new Customer();
-        $register = $this->createForm(
-            new formRegister(), $customer
-        );
-
         $request = $this->getRequest();
+        $register = $this->createForm(new formRegister(), $customer);
 
         if ('POST' === $request->getMethod())
         {
             $register->bindRequest($request);
 
-            $email = $request->get('email');
-            $username = $request->get('username');
-            $password = $request->get('password');
-
             if ($register->isValid()) {
-
-                $customer
-                    ->setEmail($email)
-                    ->setUsername($username)
-                    ->setPassword($password);
                 $customer->save();
-
-                return $this->redirect($this->generateUrl('customer'));
-            } else {
-                return $this->redirect($this->generateUrl('register'));
+                return $this->redirect($this->generateUrl('show_user', array('id' => $customer->getId())));
             }
         }
 
@@ -92,8 +75,14 @@ class DefaultController extends Controller
             new formLogin()
         );
 
+        $book = $this->createForm(
+            new formBook()
+        );
+
         $flat = FlatQuery::create()->findPk($id);
-        $room = RoomQuery::create()->findByFlatId($flat);
+        $room = RoomQuery::create()->findByFlatId($id);
+
+        $request = $this->getRequest();
 
         if (!$flat) {
             throw $this->createNotFoundException(
@@ -101,10 +90,29 @@ class DefaultController extends Controller
             );
         }
 
+        if (!$room) {
+            throw $this->createNotFoundException(
+                'No flat found for id '.$id
+            );
+        }
+
+        if ('POST' === $request->getMethod())
+        {
+            $book->bindRequest($request);
+
+            if ($book->isValid()) {
+
+                $startDate = $request->get('start_date');
+                $endDate = $request->get('end_date');
+
+            }
+        }
+
         return $this->render('FrontBundle:Default:show.html.twig', array(
             'flat' => $flat,
             'login' => $login->createView(),
-            'room' => $room
+            'rooms' => $room,
+            'book' => $book->createView()
         ));
 
     }

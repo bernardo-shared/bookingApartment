@@ -44,7 +44,7 @@
             </div>
             <div class=" offset2 span8">
                 <h3 class="title-flat">{{ flat.description }}</h3>
-                <table class="table">
+                <table class="table lineh">
                     <tbody>
                     <tr>
                         <td>Country: </td>
@@ -75,9 +75,19 @@
             </div>
         </div>
         <div class="row-fluid">
-            <h4>Dates available in {{ flat.description }}</h4>
-            <div id='jqxWidget'></div>
-            <div style='font-size: 13px; font-family: Verdana;' id='selection'></div>
+            <h4>Rooms available in {{ flat.description }}</h4>
+            <table class="table table-striped">
+                <tbody>
+                {% for room in rooms %}
+                    <tr>
+                        <td><input type="checkbox" value="{{ room.id }}"></td>
+                        <td>{{ room.description }}</td>
+                        <td><select class="beds"><option size="4">-- Beds --</option></select></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <button class="btn btn-success pull-right" type="submit">Book apartment</button>
         </div>
     </div>
 

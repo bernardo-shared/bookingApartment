@@ -1,5 +1,5 @@
 homepage:
-    pattern:  /home/
+    pattern:  /
     defaults: { _controller: FrontBundle:Default:index }
 
 register:
@@ -13,3 +13,7 @@ customer:
 flat_details:
     pattern:  /flat_details/{id}
     defaults: { _controller: FrontBundle:Default:show }
+
+show_user:
+    pattern:  /register_user/{id}
+    defaults: { _controller: FrontBundle:Default:show_user }

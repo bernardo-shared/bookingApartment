@@ -9,6 +9,7 @@
 		    '%kernel.root_dir%/../vendor/bootstrap/less/bootstrap.less'
 		    '%kernel.root_dir%/../vendor/bootstrap/less/responsive.less'
 		    '@FrontBundle/Resources/public/css/style.less'
+            '%kernel.root_dir%/../vendor/datepicker/css/*'
 		%}
     	<link rel="stylesheet" href="{{ asset_url }}" />
     	{% endstylesheets %}
@@ -33,6 +34,7 @@
         '%kernel.root_dir%/../web/js/jquery.js'
         '@FrontBundle/Resources/public/js/code.js'
         '%kernel.root_dir%/../vendor/bootstrap/js/bootstrap-dropdown.js'
+        '%kernel.root_dir%/../vendor/datepicker/js/*'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}

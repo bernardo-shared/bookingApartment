@@ -5,8 +5,15 @@ $(document).ready(function () {
         e.stopPropagation();
     });
 
-    $('#signup').onclick(function(){
-        $("#signup").modal('toogle');
+    $(".form_datetime").datetimepicker({
+        format: "dd/mm/yyyy",
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left",
+        startDate: new Date(),
+        minuteStep: 10,
+        keyboardNavigation: true
     });
-
 });
+
+

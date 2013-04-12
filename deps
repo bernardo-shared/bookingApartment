@@ -88,3 +88,7 @@
 [jquery-ui]
     git=https://github.com/jquery/jquery-ui.git
     target=/jqui
+
+[datepicker]
+    git=git://github.com/smalot/bootstrap-datetimepicker.git
+    target=/datepicker
