@@ -18,4 +18,8 @@ use Tsp\AdminBundle\Model\om\BaseFlat;
  */
 class Flat extends BaseFlat
 {
+    public function __toString()
+    {
+        return $this->getDescription();
+    }
 }
