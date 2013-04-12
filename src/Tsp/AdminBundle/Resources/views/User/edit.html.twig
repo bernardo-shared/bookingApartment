@@ -2,43 +2,58 @@
 
 {% block content %}
 
-<div class="hero-unit">
-
-    <h2>Admin edition</h2>
-
-    <!-- BEGIN MESSAGE -->
-    {% if app.session.hasFlash('notice') %}
-        <div class="alert">
-            <button type="button" class="close" data-dismiss="alert" onclick="jQuery('.alert').fadeOut('slow')">&times;</button>
-            <strong>Notice</strong> {{ app.session.flash('notice') }}
-        </div>
-    {% endif %}
-    <!-- END MESSAGE -->
-
-    <form action="{{ path('update_user', { 'id': user.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-        {{ form_widget(edit_form) }}
-        <p>
-            <button type="submit" class="btn btn-primary" >Update</button>
-        </p>
-    </form>
-
     <table>
         <tr>
             <td>
-                <a href="{{ path('list_user') }}">
+                <a href="#" onclick="javascript:history.back()">
                     Back to the list
                 </a>
-            </td>
-            <td>
-                <form action="{{ path('delete_user', { 'id': user.id }) }}" method="post">
-                    {{ form_widget(delete_form) }}
-                    <button type="submit" class="btn btn-danger" href="#">Delete</button>
-                </form>
             </td>
         </tr>
     </table>
 
-</div>
+    <div class="hero-unit">
+
+        <h2>Admin edition</h2>
+
+        <!-- BEGIN MESSAGE -->
+        {% if app.session.hasFlash('notice') %}
+            <div class="alert">
+                <button type="button" class="close" data-dismiss="alert" onclick="jQuery('.alert').fadeOut('slow')">&times;</button>
+                <strong>Notice</strong> {{ app.session.flash('notice') }}
+            </div>
+        {% endif %}
+        <!-- END MESSAGE -->
+
+        <form action="{{ path('update_user', { 'id': user.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+            {{ form_widget(edit_form) }}
+            <p>
+                <button type="submit" class="btn btn-primary" >Update</button>
+            </p>
+        </form>
+
+        <table>
+            <tr>
+                <td>
+                    <form action="{{ path('delete_user', { 'id': user.id }) }}" method="post">
+                        {{ form_widget(delete_form) }}
+                        <button type="submit" class="btn btn-danger" href="#">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <table>
+        <tr>
+            <td>
+                <a href="#" onclick="javascript:history.back()">
+                    Back to the list
+                </a>
+            </td>
+        </tr>
+    </table>
 
 {% endblock %}
 

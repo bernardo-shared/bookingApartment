@@ -2,6 +2,16 @@
 
 {% block content %}
 
+    <table>
+        <tr>
+            <td>
+                <a href="#" onclick="javascript:history.back()">
+                    Back to the list
+                </a>
+            </td>
+        </tr>
+    </table>
+
     <!-- BEGIN BLOCK -->
     <div class="hero-unit">
 
@@ -11,16 +21,13 @@
 
             <tbody>
                 <tr>
-                    <td>ID: </td>           <td>{{ user.id }}</td>
+                    <td>ID: </td>           <td>{{ customer.id }}</td>
                 </tr>
                 <tr>
-                    <td>Username: </td>  <td>{{ user.username }}</td>
+                    <td>Username: </td>  <td>{{ customer.username }}</td>
                 </tr>
                 <tr>
-                    <td>Email: </td>      <td>{{ user.email }}</td>
-                </tr>
-                <tr>
-                    <td>Active: </td>      <td>{{ user.is_active }}</td>
+                    <td>Email: </td>      <td>{{ customer.email }}</td>
                 </tr>
             </tbody>
         </table>
@@ -32,7 +39,7 @@
     <table>
         <tr>
             <td>
-                <a href="{{ path('list_user') }}">
+                <a href="#" onclick="javascript:history.back()">
                     Back to the list
                 </a>
             </td>

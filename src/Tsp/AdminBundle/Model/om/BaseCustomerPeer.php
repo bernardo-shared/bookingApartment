@@ -724,6 +724,9 @@ abstract class BaseCustomerPeer
             }
         } else {
 
+        if ($obj->isNew() || $obj->isColumnModified(CustomerPeer::USERNAME))
+            $columns[CustomerPeer::USERNAME] = $obj->getUsername();
+
         }
 
         return BasePeer::doValidate(CustomerPeer::DATABASE_NAME, CustomerPeer::TABLE_NAME, $columns);

@@ -48,7 +48,8 @@ class CustomerController extends Controller
             }
         }
 
-        return $this->render('AdminBundle:Customer:show.html.twig', array(
+        return $this->render('AdminBundle:Customer:new.html.twig', array(
+            'customer' => $customer,
             'form'   => $form->createView() // I the view get flat -> $flat = $form->getData()
         ));
     }

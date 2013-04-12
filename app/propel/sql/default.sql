@@ -12,13 +12,13 @@ DROP TABLE IF EXISTS `flat`;
 CREATE TABLE `flat`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `description` VARCHAR(100),
-    `country` VARCHAR(100),
-    `city` VARCHAR(100),
-    `postcode` VARCHAR(6),
-    `street` VARCHAR(30),
-    `number` VARCHAR(5),
-    `floor` VARCHAR(5),
+    `description` VARCHAR(100) NOT NULL,
+    `country` ENUM('Spain','Germany') NOT NULL,
+    `city` VARCHAR(100) NOT NULL,
+    `postcode` VARCHAR(6) NOT NULL,
+    `street` VARCHAR(30) NOT NULL,
+    `number` VARCHAR(5) NOT NULL,
+    `floor` VARCHAR(5) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
@@ -67,7 +67,7 @@ DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `username` VARCHAR(10),
+    `username` VARCHAR(10) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `password` VARCHAR(100) NOT NULL,
     `salt` VARCHAR(32),

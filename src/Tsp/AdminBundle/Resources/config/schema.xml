@@ -7,13 +7,16 @@
         <parameter name="Charset" value="utf8"/>
     </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-    <column name="description" type="varchar" size="100" />
-    <column name="country" type="varchar" size="100" />
-    <column name="city" type="varchar" size="100" />
-    <column name="postcode" type="varchar" size="6" />
-    <column name="street" type="varchar" size="30" />
-    <column name="number" type="varchar" size="5" />
-    <column name="floor" type="varchar" size="5" />
+    <column name="description" required="true" type="varchar" size="100" />
+    <column name="country" type="varchar" required="true" sqlType="ENUM('Spain','Germany')" />
+    <column name="city" required="true" type="varchar" size="100" />
+    <column name="postcode" required="true" type="varchar" size="6" />
+    <column name="street" required="true" type="varchar" size="30" />
+    <column name="number" required="true" type="varchar" size="5" />
+    <column name="floor" required="true" type="varchar" size="5" />
+    <validator column="postcode">
+        <rule name="minLength"  value="4"  message="Postcode must be at least ${value} characters !" />
+    </validator>
 </table>
 
 <table name="room">
@@ -49,10 +52,13 @@
         <parameter name="Charset" value="utf8"/>
     </vendor>
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-    <column name="username" type="varchar" primaryString="1" size="10" />
+    <column name="username" type="varchar" required="true" primaryString="1" size="10" />
     <column name="email" type="varchar" required="true" primaryString="1" size="100" />
     <column name="password" type="varchar" required="true" primaryString="1" size="100" />
     <column name="salt" type="varchar" primaryString="1" size="32" />
+    <validator column="username">
+        <rule name="minLength"  value="5"  message="Username must be at least ${value} characters !" />
+    </validator>
 </table>
 
 <table name="booking">

@@ -43,7 +43,7 @@ class CustomerTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('username', 'Username', 'VARCHAR', false, 10, null);
+        $this->addColumn('username', 'Username', 'VARCHAR', true, 10, null);
         $this->getColumn('username', false)->setPrimaryString(true);
         $this->addColumn('email', 'Email', 'VARCHAR', true, 100, null);
         $this->getColumn('email', false)->setPrimaryString(true);
@@ -52,6 +52,7 @@ class CustomerTableMap extends TableMap
         $this->addColumn('salt', 'Salt', 'VARCHAR', false, 32, null);
         $this->getColumn('salt', false)->setPrimaryString(true);
         // validators
+        $this->addValidator('username', 'minLength', 'propel.validator.MinLengthValidator', '5', 'Username must be at least 5 characters !');
     } // initialize()
 
     /**

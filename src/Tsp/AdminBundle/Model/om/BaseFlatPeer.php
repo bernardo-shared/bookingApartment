@@ -68,6 +68,10 @@ abstract class BaseFlatPeer
     /** the column name for the floor field */
     const FLOOR = 'flat.floor';
 
+    /** The enumerated values for the country field */
+    const COUNTRY_SPAIN = 'Spain';
+    const COUNTRY_GERMANY = 'Germany';
+
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
 
@@ -110,6 +114,14 @@ abstract class BaseFlatPeer
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
+    /** The enumerated values for this table */
+    protected static $enumValueSets = array(
+        FlatPeer::COUNTRY => array(
+            FlatPeer::COUNTRY_SPAIN,
+            FlatPeer::COUNTRY_GERMANY,
+        ),
+    );
+
     /**
      * Translates a fieldname to another type
      *
@@ -147,6 +159,50 @@ abstract class BaseFlatPeer
         }
 
         return FlatPeer::$fieldNames[$type];
+    }
+
+    /**
+     * Gets the list of values for all ENUM columns
+     * @return array
+     */
+    public static function getValueSets()
+    {
+      return FlatPeer::$enumValueSets;
+    }
+
+    /**
+     * Gets the list of values for an ENUM column
+     *
+     * @param string $colname The ENUM column name.
+     *
+     * @return array list of possible values for the column
+     */
+    public static function getValueSet($colname)
+    {
+        $valueSets = FlatPeer::getValueSets();
+
+        if (!isset($valueSets[$colname])) {
+            throw new PropelException(sprintf('Column "%s" has no ValueSet.', $colname));
+        }
+
+        return $valueSets[$colname];
+    }
+
+    /**
+     * Gets the SQL value for the ENUM column value
+     *
+     * @param string $colname ENUM column name.
+     * @param string $enumVal ENUM value.
+     *
+     * @return int            SQL value
+     */
+    public static function getSqlValueForEnum($colname, $enumVal)
+    {
+        $values = FlatPeer::getValueSet($colname);
+        if (!in_array($enumVal, $values)) {
+            throw new PropelException(sprintf('Value "%s" is not accepted in this enumerated column', $colname));
+        }
+        return array_search($enumVal, $values);
     }
 
     /**
@@ -738,6 +794,9 @@ abstract class BaseFlatPeer
                 }
             }
         } else {
+
+        if ($obj->isNew() || $obj->isColumnModified(FlatPeer::POSTCODE))
+            $columns[FlatPeer::POSTCODE] = $obj->getPostcode();
 
         }
 

@@ -43,14 +43,19 @@ class FlatTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('description', 'Description', 'VARCHAR', false, 100, null);
-        $this->addColumn('country', 'Country', 'VARCHAR', false, 100, null);
-        $this->addColumn('city', 'City', 'VARCHAR', false, 100, null);
-        $this->addColumn('postcode', 'Postcode', 'VARCHAR', false, 6, null);
-        $this->addColumn('street', 'Street', 'VARCHAR', false, 30, null);
-        $this->addColumn('number', 'Number', 'VARCHAR', false, 5, null);
-        $this->addColumn('floor', 'Floor', 'VARCHAR', false, 5, null);
+        $this->addColumn('description', 'Description', 'VARCHAR', true, 100, null);
+        $this->addColumn('country', 'Country', 'VARCHAR', true, null, null);
+        $this->getColumn('country', false)->setValueSet(array (
+  0 => 'Spain',
+  1 => 'Germany',
+));
+        $this->addColumn('city', 'City', 'VARCHAR', true, 100, null);
+        $this->addColumn('postcode', 'Postcode', 'VARCHAR', true, 6, null);
+        $this->addColumn('street', 'Street', 'VARCHAR', true, 30, null);
+        $this->addColumn('number', 'Number', 'VARCHAR', true, 5, null);
+        $this->addColumn('floor', 'Floor', 'VARCHAR', true, 5, null);
         // validators
+        $this->addValidator('postcode', 'minLength', 'propel.validator.MinLengthValidator', '4', 'Postcode must be at least 4 characters !');
     } // initialize()
 
     /**

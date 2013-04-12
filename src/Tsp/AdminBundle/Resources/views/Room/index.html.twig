@@ -26,7 +26,7 @@
         <tr>
             <td>{{ room.id }}</td>
             <td>{{ room.description }}</td>
-            <td>{{ room.Flat.description }} (ID: {{ room.Flat.id }})</td>
+            <td><a href="{{ path('show_flat', {id: room.Flat.id}) }}">{{ room.Flat.description }} (ID: {{ room.Flat.id }})</a></td>
             <td>
                 <a href="{{ path('delete_room', {id: room.id}) }}" class="btn btn-danger" type="button" >Delete</a>
                 <a href="{{ path('show_room', {id: room.id}) }}" class="btn btn-info" type="button">Info</a>
