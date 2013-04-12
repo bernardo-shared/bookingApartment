@@ -14,9 +14,9 @@
 {% block content %}
     <div id="wrap_register" class="container-fluid">
         <h2 class="text-center text-login">BookingApartment</h2>
-        <form action="{{ path('customer') }}" method="post" {{ form_enctype(register) }}>
+        <form action="{{ path('show_user') }}" method="post" {{ form_enctype(register) }}>
         {{ form_widget(register) }}
-        <input class="btn btn-success" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign Up" />
+        <input class="btn btn-success" type="submit" name="commit" value="Sign Up" />
     </div>
 {% endblock %}
 
