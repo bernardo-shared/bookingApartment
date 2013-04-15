@@ -13,9 +13,17 @@ class RoomController extends Controller
 
     public function indexAction()
     {
-        $rooms = RoomQuery::create()
-            ->orderById()
-            ->find();
+        $request = $this->get('request');
+        $flat_id = $request->get('flat_id');
+
+        if ($flat_id) {
+            $rooms = RoomQuery::create()->findByFlatId($flat_id);
+
+        } else {
+            $rooms = RoomQuery::create()
+                ->orderById()
+                ->find();
+        }
 
         return $this->render('AdminBundle:Room:index.html.twig', array('rooms' => $rooms));
     }

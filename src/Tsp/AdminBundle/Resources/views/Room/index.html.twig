@@ -17,6 +17,7 @@
         <thead>
         <tr>
             <th>Room-ID</th>
+            <th>Beds</th>
             <th>Description</th>
             <th>Flat</th>
         </tr>
@@ -25,11 +26,13 @@
         {% for room in rooms %}
         <tr>
             <td><a href="{{ path('show_room', {id: room.id}) }}">#{{ room.id }}</a></td>
+            <td><a href="{{ path('list_bed', {room_id: room.id}) }}">{{ room.Beds|length }}</a></td>
             <td>{{ room.description }}</td>
             <td><a href="{{ path('show_flat', {id: room.Flat.id}) }}">{{ room.Flat.description }} (ID: {{ room.Flat.id }})</a></td>
             <td>
                 <a href="{{ path('delete_room', {id: room.id}) }}" class="btn btn-danger" type="button" >Delete</a>
                 <a href="{{ path('show_room', {id: room.id}) }}" class="btn btn-info" type="button">Info</a>
+                <a href="{{ path('list_bed', { room_id: room.id}) }}" class="btn btn-info" type="button">View beds</a>
                 <a href="{{ path('new_bed', { id: room.id }) }}" class="btn" type="button">Create bed</a>
                 <a href="{{ path('edit_room', { id: room.id }) }}" class="btn" type="button">Edit</a>
             </td>

@@ -13,7 +13,8 @@ class BookingController extends Controller
     public function indexAction()
     {
         $bookings = BookingQuery::create()
-            ->orderById()
+            ->filterByEndDate(date('Y-m-d'), ">=")
+            ->orderById('desc')
             ->find();
 
         return $this->render('AdminBundle:Booking:index.html.twig', array('bookings' => $bookings));
@@ -22,6 +23,7 @@ class BookingController extends Controller
     public function historyAction()
     {
         $bookings = BookingQuery::create()
+            ->filterByEndDate(date('Y-m-d'), '<')
             ->orderById()
             ->find();
 
@@ -129,6 +131,8 @@ class BookingController extends Controller
     public function deleteAction($id)
     {
         $booking = BookingQuery::create()->findPk($id);
+        $request = $this->get('request');
+        $origin = $request->get('origin');
 
         if (!$booking) {
             throw $this->createNotFoundException(
@@ -143,7 +147,11 @@ class BookingController extends Controller
             $this->get('session')->setFlash('notice', 'Error: Your changes were not saved!');
         }
 
-        return $this->redirect($this->generateUrl('list_booking'));
+        if ('history' == $origin) {
+            return $this->redirect($this->generateUrl('history_booking'));
+        } else {
+            return $this->redirect($this->generateUrl('list_booking'));
+        }
     }
 
     private function createDeleteForm($id)

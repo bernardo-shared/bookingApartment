@@ -27,8 +27,8 @@
         {% for booking in bookings %}
         <tr>
             <td><a href="{{ path('show_booking', { id: booking.id }) }}">#{{ booking.id }}</a></td>
-            <td>{{ booking.StartDate }}</td>
-            <td>{{ booking.EndDate }}</td>
+            <td>{{ booking.StartDate|date('Y/m/d') }}</td>
+            <td>{{ booking.EndDate|date('Y/m/d') }}</td>
             <td><a href="{{ path('show_customer', {id: booking.Customer.id}) }}">{{ booking.Customer.username }} {{ booking.Customer.email }} (Id: {{ booking.Customer.id }})</a></td>
             <td><span style="color: darkgreen">Room</span>: {{ booking.Bed.Room.description }} <span style="color: darkgreen">Bed</span>: {{ booking.Bed.type }}</td>
             <td>

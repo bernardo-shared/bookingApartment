@@ -27,7 +27,7 @@
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
     <column name="description" type="varchar" primaryString="1" size="100" />
     <column name="flat_id" type="integer" />
-    <foreign-key foreignTable="flat">
+    <foreign-key foreignTable="flat" onDelete="CASCADE">
         <reference local="flat_id" foreign="id" />
     </foreign-key>
 </table>
@@ -41,7 +41,7 @@
     <!--<column name="type" type="enum" required="true" valueSet="Sofa, Single, TWW"/> !!!! NOT WORK    -->
     <column name="type" type="varchar" required="true" sqlType="ENUM('Sofa','Single','TWW')" />
     <column name="room_id" type="integer" />
-    <foreign-key foreignTable="room">
+    <foreign-key foreignTable="room" onDelete="CASCADE">
         <reference local="room_id" foreign="id" />
     </foreign-key>
 </table>
@@ -71,10 +71,10 @@
     <column name="end_date" type="date" required="true" />
     <column name="customer_id" type="integer" />
     <column name="bed_id" type="integer" />
-    <foreign-key foreignTable="customer">
+    <foreign-key foreignTable="customer" onDelete="CASCADE">
         <reference local="customer_id" foreign="id" />
     </foreign-key>
-    <foreign-key foreignTable="bed">
+    <foreign-key foreignTable="bed" onDelete="CASCADE">
         <reference local="bed_id" foreign="id" />
     </foreign-key>
 </table>

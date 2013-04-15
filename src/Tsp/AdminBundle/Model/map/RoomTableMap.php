@@ -54,8 +54,8 @@ class RoomTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Flat', 'Tsp\\AdminBundle\\Model\\Flat', RelationMap::MANY_TO_ONE, array('flat_id' => 'id', ), null, null);
-        $this->addRelation('Bed', 'Tsp\\AdminBundle\\Model\\Bed', RelationMap::ONE_TO_MANY, array('id' => 'room_id', ), null, null, 'Beds');
+        $this->addRelation('Flat', 'Tsp\\AdminBundle\\Model\\Flat', RelationMap::MANY_TO_ONE, array('flat_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Bed', 'Tsp\\AdminBundle\\Model\\Bed', RelationMap::ONE_TO_MANY, array('id' => 'room_id', ), 'CASCADE', null, 'Beds');
     } // buildRelations()
 
 } // RoomTableMap

@@ -38,6 +38,7 @@ CREATE TABLE `room`
     CONSTRAINT `room_FK_1`
         FOREIGN KEY (`flat_id`)
         REFERENCES `flat` (`id`)
+        ON DELETE CASCADE
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
@@ -56,6 +57,7 @@ CREATE TABLE `bed`
     CONSTRAINT `bed_FK_1`
         FOREIGN KEY (`room_id`)
         REFERENCES `room` (`id`)
+        ON DELETE CASCADE
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
@@ -92,10 +94,12 @@ CREATE TABLE `booking`
     INDEX `booking_FI_2` (`bed_id`),
     CONSTRAINT `booking_FK_1`
         FOREIGN KEY (`customer_id`)
-        REFERENCES `customer` (`id`),
+        REFERENCES `customer` (`id`)
+        ON DELETE CASCADE,
     CONSTRAINT `booking_FK_2`
         FOREIGN KEY (`bed_id`)
         REFERENCES `bed` (`id`)
+        ON DELETE CASCADE
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------

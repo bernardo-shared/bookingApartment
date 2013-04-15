@@ -55,8 +55,8 @@ class BookingTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Customer', 'Tsp\\AdminBundle\\Model\\Customer', RelationMap::MANY_TO_ONE, array('customer_id' => 'id', ), null, null);
-        $this->addRelation('Bed', 'Tsp\\AdminBundle\\Model\\Bed', RelationMap::MANY_TO_ONE, array('bed_id' => 'id', ), null, null);
+        $this->addRelation('Customer', 'Tsp\\AdminBundle\\Model\\Customer', RelationMap::MANY_TO_ONE, array('customer_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Bed', 'Tsp\\AdminBundle\\Model\\Bed', RelationMap::MANY_TO_ONE, array('bed_id' => 'id', ), 'CASCADE', null);
     } // buildRelations()
 
 } // BookingTableMap
