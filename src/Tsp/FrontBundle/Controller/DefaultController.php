@@ -3,9 +3,11 @@
 namespace Tsp\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Tsp\AdminBundle\Model\BedQuery;
 use Tsp\FrontBundle\Resources\forms\formLogin;
 use Tsp\FrontBundle\Resources\forms\formRegister;
 use Tsp\FrontBundle\Resources\forms\formBook;
@@ -19,21 +21,41 @@ use Tsp\AdminBundle\Model\Customer;
 class DefaultController extends Controller
 {
 
-    public function indexAction()
+    public function loginAction()
     {
         $login = $this->createForm(
             new formLogin()
         );
 
+        return $this->render(
+            'FrontBundle::login.html.twig',
+            array(
+                'login' => $login->createView()
+            )
+        );
+    }
+
+
+    public function indexAction()
+    {
+        $formBooks = array();
 
         $flats = FlatQuery::create()
             ->orderById()
             ->find();
 
+        foreach ($flats as $flat)
+        {
+            $form = $this->createForm(new formBook());
+            $formBooks[$flat->getId()] = $form->createView();
+        }
+
+
         return $this->render(
             'FrontBundle:Default:index.html.twig',
             array(
-                'login' => $login->createView(), 'flats' => $flats
+                'flats' => $flats,
+                'formBooks' => $formBooks
             )
         );
     }
@@ -81,6 +103,7 @@ class DefaultController extends Controller
 
         $flat = FlatQuery::create()->findPk($id);
         $room = RoomQuery::create()->findByFlatId($id);
+        $bed = BedQuery::create()->findByRoomId($room);
 
         $request = $this->getRequest();
 
@@ -96,15 +119,36 @@ class DefaultController extends Controller
             );
         }
 
+        if (!$bed) {
+            throw $this->createNotFoundException(
+                'No flat found for id '.$id
+            );
+        }
+
         if ('POST' === $request->getMethod())
         {
             $book->bindRequest($request);
 
             if ($book->isValid()) {
 
-                $startDate = $request->get('start_date');
+
+                $startDate = $book->get('start_date');
+                die(print_r($startDate));
                 $endDate = $request->get('end_date');
 
+
+            } else {
+
+                foreach ($book->getErrors() as $error) {
+                    $template = $error->getMessageTemplate();
+                    $parameters = $error->getMessageParameters();
+                    echo $template;
+
+                    foreach($parameters as $var => $value){
+                        echo str_replace($var, $value, $template);
+                    }
+                    die();
+                }
             }
         }
 
@@ -112,7 +156,8 @@ class DefaultController extends Controller
             'flat' => $flat,
             'login' => $login->createView(),
             'rooms' => $room,
-            'book' => $book->createView()
+            'book' => $book->createView(),
+            'bed' => $bed
         ));
 
     }

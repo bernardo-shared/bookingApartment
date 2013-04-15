@@ -10,13 +10,29 @@ class formBook extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('start_date', 'date', array('required' => true))
-            ->add('end_date', 'date', array('required' => true))
+            ->add('start_date', 'date', array(
+                'required' => true,
+                'widget' => 'single_text',
+                'format' => 'DD/MM/YYYY'
+            ))
+            ->add('end_date', 'date', array(
+                'required' => true,
+                'widget' => 'single_text',
+                'format' => 'DD/MM/YYYY'
+            ))
             ->getForm();
+    }
+
+    public function getDefaultOptions(array $options)
+    {
+        $options = parent::getDefaultOptions($options);
+        $options['csrf_protection'] = false;
+
+        return $options;
     }
 
     public function getName()
     {
-        return 'name';
+        return 'book';
     }
 }

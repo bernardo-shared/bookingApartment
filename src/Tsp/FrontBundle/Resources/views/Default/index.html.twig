@@ -13,13 +13,7 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
                 <div class="dropdown-menu">
-                    <form action="{{ path('customer') }}" method="post" {{ form_enctype(login) }}>
-                        {{ form_widget(login) }}
-                        <input id="user_remember_me" type="checkbox" name="" value="1" />
-                        <label class="string optional" for="user_remember_me"> Remember me</label>
-
-                        <input class="btn btn-success" type="submit" name="commit" value="Sign In" />
-                    </form>
+                    {% render 'FrontBundle:Default:login' %}
                 </div>
             </li>
         </ul>
@@ -52,12 +46,12 @@
                                         <form action="{{ path('flat_details', {id: flat.id}) }}" method="POST">
                                             <span>From</span>
                                             <div class="input-append date form_datetime">
-                                                <input name="start_date" size="16" type="text" value="" required="required">
+                                                {{ form_widget(formBooks[flat.id]['start_date']) }}
                                                 <span class="add-on"><i class="icon-calendar"></i></span>
                                             </div>
                                             <span>To</span>
                                             <div data-date-viewmode="years" class="input-append date form_datetime">
-                                                <input  name="end_date" size="16" type="text" value="" required="required">
+                                                {{ form_widget(formBooks[flat.id]['end_date']) }}
                                                 <span class="add-on"><i class="icon-calendar"></i></span>
                                             </div>
                                             <input type="hidden" name="flat_id" value="{{ flat.id }}">

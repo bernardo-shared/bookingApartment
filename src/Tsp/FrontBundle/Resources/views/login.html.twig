@@ -1,0 +1,7 @@
+<form action="{{ path('customer') }}" method="post" {{ form_enctype(login) }}>
+    {{ form_widget(login) }}
+    <input id="user_remember_me" type="checkbox" name="" value="1" />
+    <label class="string optional" for="user_remember_me"> Remember me</label>
+
+    <input class="btn btn-success" type="submit" name="commit" value="Sign In" />
+</form>

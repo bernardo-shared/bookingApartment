@@ -18,15 +18,9 @@
             <li><a href="{{ path('register') }}">Sign Up</a></li>
             <li class="divider-vertical"></li>
             <li class="dropdown">
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><strong class="caret">Sign In</strong></a>
                 <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                    <form action="{{ path('customer') }}" method="post" {{ form_enctype(login) }}>
-                        {{ form_widget(login) }}
-                        <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
-                        <label class="string optional" for="user_remember_me"> Remember me</label>
-
-                        <input class="btn btn-success" type="submit" name="commit" value="Sign In" />
-                    </form>
+                    {% render 'FrontBundle:Default:login' %}
                 </div>
             </li>
         </ul>
@@ -34,7 +28,7 @@
 {% endblock %}
 
 {% block content %}
-
+{{ form_errors(book) }}
 <div class="container-fluid">
     <div class="hero-unit">
         
@@ -81,8 +75,21 @@
                 {% for room in rooms %}
                     <tr>
                         <td><input type="checkbox" value="{{ room.id }}"></td>
-                        <td>{{ room.description }}</td>
-                        <td><select class="beds"><option size="4">-- Beds --</option></select></td>
+                        <td><i class="icon-home"></i></td>
+                        <td style="padding-top: 12px;">{{ room.description }}</td>
+                        <td>
+                            <select class="beds">
+                                {% for i in range(0,room.Beds|length) %}
+                                <option size="4">
+                                    {% if room.Beds|length != 0 %}
+                                    {{ i }}
+                                    {% else %}
+                                    Not available
+                                    {% endif %}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -101,12 +108,12 @@
 {% block js %}
     {{ parent() }}
     {% javascripts
-    '%kernel.root_dir%/../web/js/jqwidgets/jqxcore.js'
-    '%kernel.root_dir%/../web/js/jqwidgets/jqxdatetimeinput.js'
-    '%kernel.root_dir%/../web/js/jqwidgets/jqxcalendar.js'
-    '%kernel.root_dir%/../web/js/jqwidgets/jqxtooltip.js'
-    '%kernel.root_dir%/../web/js/jqwidgets/globalization/globalize.js'
-    '@FrontBundle/Resources/public/js/calendar.js'
+        '%kernel.root_dir%/../web/js/jqwidgets/jqxcore.js'
+        '%kernel.root_dir%/../web/js/jqwidgets/jqxdatetimeinput.js'
+        '%kernel.root_dir%/../web/js/jqwidgets/jqxcalendar.js'
+        '%kernel.root_dir%/../web/js/jqwidgets/jqxtooltip.js'
+        '%kernel.root_dir%/../web/js/jqwidgets/globalization/globalize.js'
+        '@FrontBundle/Resources/public/js/calendar.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
