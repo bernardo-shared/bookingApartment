@@ -63,7 +63,7 @@ class FlatTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Room', 'Tsp\\AdminBundle\\Model\\Room', RelationMap::ONE_TO_MANY, array('id' => 'flat_id', ), null, null, 'Rooms');
+        $this->addRelation('Room', 'Tsp\\AdminBundle\\Model\\Room', RelationMap::ONE_TO_MANY, array('id' => 'flat_id', ), 'CASCADE', null, 'Rooms');
     } // buildRelations()
 
 } // FlatTableMap

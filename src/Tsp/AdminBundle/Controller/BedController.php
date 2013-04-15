@@ -12,9 +12,17 @@ class BedController extends Controller
 
     public function indexAction()
     {
-        $beds = BedQuery::create()
-            ->orderById()
-            ->find();
+        $request = $this->get('request');
+        $room_id = $request->get('room_id');
+
+        if ($room_id) {
+            $beds = BedQuery::create()->findByRoomId($room_id);
+
+        } else {
+            $beds = RoomQuery::create()
+                ->orderById()
+                ->find();
+        }
 
         return $this->render('AdminBundle:Bed:index.html.twig', array('beds' => $beds));
     }

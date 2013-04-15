@@ -17,6 +17,7 @@
         <thead>
         <tr>
             <th>Flat-ID</th>
+            <th>Rooms</th>
             <th>Description</th>
             <th>Country</th>
             <th>City</th>
@@ -31,6 +32,7 @@
         {% for flat in flats %}
         <tr>
             <td><a href="{{ path('show_flat', {id: flat.id}) }}">#{{ flat.id }}</a></td>
+            <td><a href="{{ path('list_room', { flat_id: flat.id }) }}">{{ flat.Rooms|length }}</a></td>
             <td>{{ flat.description }}</td>
             <td>{{ flat.country }}</td>
             <td>{{ flat.city }}</td>

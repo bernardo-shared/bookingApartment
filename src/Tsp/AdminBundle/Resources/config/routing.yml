@@ -180,6 +180,7 @@ show_bed:
     pattern:  /show_bed/{id}
     defaults: { _controller: AdminBundle:Bed:show }
 
+
 # LOGIN
 login:
     pattern: /login

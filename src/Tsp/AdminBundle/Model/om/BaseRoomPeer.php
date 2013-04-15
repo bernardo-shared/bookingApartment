@@ -9,6 +9,7 @@ use \PDOStatement;
 use \Propel;
 use \PropelException;
 use \PropelPDO;
+use Tsp\AdminBundle\Model\BedPeer;
 use Tsp\AdminBundle\Model\FlatPeer;
 use Tsp\AdminBundle\Model\Room;
 use Tsp\AdminBundle\Model\RoomPeer;
@@ -380,6 +381,9 @@ abstract class BaseRoomPeer
      */
     public static function clearRelatedInstancePool()
     {
+        // Invalidate objects in BedPeer instance pool,
+        // since one or more of them may be deleted by ON DELETE CASCADE/SETNULL rule.
+        BedPeer::clearInstancePool();
     }
 
     /**
@@ -847,6 +851,7 @@ abstract class BaseRoomPeer
             // use transaction because $criteria could contain info
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
+            $affectedRows += RoomPeer::doOnDeleteCascade(new Criteria(RoomPeer::DATABASE_NAME), $con);
             $affectedRows += BasePeer::doDeleteAll(RoomPeer::TABLE_NAME, $con, RoomPeer::DATABASE_NAME);
             // Because this db requires some delete cascade/set null emulation, we have to
             // clear the cached instance *after* the emulation has happened (since
@@ -880,24 +885,14 @@ abstract class BaseRoomPeer
         }
 
         if ($values instanceof Criteria) {
-            // invalidate the cache for all objects of this type, since we have no
-            // way of knowing (without running a query) what objects should be invalidated
-            // from the cache based on this Criteria.
-            RoomPeer::clearInstancePool();
             // rename for clarity
             $criteria = clone $values;
         } elseif ($values instanceof Room) { // it's a model object
-            // invalidate the cache for this single object
-            RoomPeer::removeInstanceFromPool($values);
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
             $criteria = new Criteria(RoomPeer::DATABASE_NAME);
             $criteria->add(RoomPeer::ID, (array) $values, Criteria::IN);
-            // invalidate the cache for this object(s)
-            foreach ((array) $values as $singleval) {
-                RoomPeer::removeInstanceFromPool($singleval);
-            }
         }
 
         // Set the correct dbName
@@ -910,6 +905,23 @@ abstract class BaseRoomPeer
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
 
+            // cloning the Criteria in case it's modified by doSelect() or doSelectStmt()
+            $c = clone $criteria;
+            $affectedRows += RoomPeer::doOnDeleteCascade($c, $con);
+
+            // Because this db requires some delete cascade/set null emulation, we have to
+            // clear the cached instance *after* the emulation has happened (since
+            // instances get re-added by the select statement contained therein).
+            if ($values instanceof Criteria) {
+                RoomPeer::clearInstancePool();
+            } elseif ($values instanceof Room) { // it's a model object
+                RoomPeer::removeInstanceFromPool($values);
+            } else { // it's a primary key, or an array of pks
+                foreach ((array) $values as $singleval) {
+                    RoomPeer::removeInstanceFromPool($singleval);
+                }
+            }
+
             $affectedRows += BasePeer::doDelete($criteria, $con);
             RoomPeer::clearRelatedInstancePool();
             $con->commit();
@@ -919,6 +931,39 @@ abstract class BaseRoomPeer
             $con->rollBack();
             throw $e;
         }
+    }
+
+    /**
+     * This is a method for emulating ON DELETE CASCADE for DBs that don't support this
+     * feature (like MySQL or SQLite).
+     *
+     * This method is not very speedy because it must perform a query first to get
+     * the implicated records and then perform the deletes by calling those Peer classes.
+     *
+     * This method should be used within a transaction if possible.
+     *
+     * @param      Criteria $criteria
+     * @param      PropelPDO $con
+     * @return int The number of affected rows (if supported by underlying database driver).
+     */
+    protected static function doOnDeleteCascade(Criteria $criteria, PropelPDO $con)
+    {
+        // initialize var to track total num of affected rows
+        $affectedRows = 0;
+
+        // first find the objects that are implicated by the $criteria
+        $objects = RoomPeer::doSelect($criteria, $con);
+        foreach ($objects as $obj) {
+
+
+            // delete related Bed objects
+            $criteria = new Criteria(BedPeer::DATABASE_NAME);
+
+            $criteria->add(BedPeer::ROOM_ID, $obj->getId());
+            $affectedRows += BedPeer::doDelete($criteria, $con);
+        }
+
+        return $affectedRows;
     }
 
     /**

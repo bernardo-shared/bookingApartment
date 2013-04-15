@@ -58,8 +58,8 @@ class BedTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Room', 'Tsp\\AdminBundle\\Model\\Room', RelationMap::MANY_TO_ONE, array('room_id' => 'id', ), null, null);
-        $this->addRelation('Booking', 'Tsp\\AdminBundle\\Model\\Booking', RelationMap::ONE_TO_MANY, array('id' => 'bed_id', ), null, null, 'Bookings');
+        $this->addRelation('Room', 'Tsp\\AdminBundle\\Model\\Room', RelationMap::MANY_TO_ONE, array('room_id' => 'id', ), 'CASCADE', null);
+        $this->addRelation('Booking', 'Tsp\\AdminBundle\\Model\\Booking', RelationMap::ONE_TO_MANY, array('id' => 'bed_id', ), 'CASCADE', null, 'Bookings');
     } // buildRelations()
 
 } // BedTableMap

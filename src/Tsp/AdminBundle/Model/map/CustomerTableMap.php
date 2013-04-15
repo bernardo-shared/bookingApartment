@@ -60,7 +60,7 @@ class CustomerTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Booking', 'Tsp\\AdminBundle\\Model\\Booking', RelationMap::ONE_TO_MANY, array('id' => 'customer_id', ), null, null, 'Bookings');
+        $this->addRelation('Booking', 'Tsp\\AdminBundle\\Model\\Booking', RelationMap::ONE_TO_MANY, array('id' => 'customer_id', ), 'CASCADE', null, 'Bookings');
     } // buildRelations()
 
 } // CustomerTableMap

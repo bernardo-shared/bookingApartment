@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>List Customer</h1>
+    <h1>List Beds</h1>
 
     <!-- BEGIN MESSAGE -->
     {% if app.session.hasFlash('notice') %}
@@ -24,9 +24,9 @@
         <tbody>
         {% for bed in beds %}
         <tr>
-            <td>{{ bed.id }}</td>
+            <td><a href="{{ path('edit_bed', {id: bed.id}) }}">#{{ bed.id }}</a></td>
             <td>{{ bed.type }}</td>
-            <td>{{ bed.Room.description }} (Id: bed.Room.id)</td>
+            <td><a href="{{ path('show_room', {id: bed.Room.id }) }}">{{ bed.Room.description }} (Id: {{ bed.Room.id }})</a></td>
             <td>
                 <a href="{{ path('delete_bed', {id: bed.id}) }}" class="btn btn-danger" type="button" >Delete</a>
                 <a href="{{ path('edit_bed', { id: bed.id }) }}" class="btn" type="button">Edit</a>

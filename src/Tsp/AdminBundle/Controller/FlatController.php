@@ -128,9 +128,12 @@ class FlatController extends Controller
         }
 
         try {
+            $rooms = $flat->getRooms();
+            foreach($rooms as $room) $room->delete();
+
             $flat->delete();
             $this->get('session')->setFlash('notice', 'Your changes were saved!');
-        } catch (Exception $e) {
+        } catch (PropelException $e) {
             $this->get('session')->setFlash('notice', 'Error: Your changes were not saved!');
         }
 
